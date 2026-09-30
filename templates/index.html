@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><meta name="description" content="团团的每日任务和本次学习任务打卡页面"><title>团团打卡</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="app">
+  <header class="hero"><div class="eyebrow">✨ LITTLE STEPS, BIG GROWTH</div><h1>团团打卡</h1><p>每天进步一点点，认真完成今天的小目标。</p></header>
+  <div class="tabs" role="tablist" aria-label="任务分类"><button class="tab" role="tab" id="tab-daily" aria-controls="daily" aria-selected="true">☀️ 每日任务</button><button class="tab" role="tab" id="tab-once" aria-controls="once" aria-selected="false">📚 不定期任务</button></div>
+  <section class="panel" id="daily" role="tabpanel" aria-labelledby="tab-daily"><div class="section-head"><div><h2>每日小目标</h2><p>{{ today }}</p></div><span class="progress" id="daily-progress">0 / {{ daily|length }} 完成</span></div>
+    {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
+    <p class="hint">每日打卡按日期保存，第二天重新开始。</p>
+  </section>
+  <section class="panel" id="once" role="tabpanel" aria-labelledby="tab-once" hidden><div class="section-head"><div><h2>不定期任务</h2><p>按学科逐项完成</p></div></div>
+    {% for assignment in assignments %}<div class="date-pill assignment-date">{{ assignment.date }} 布置</div>
+      {% for section in assignment.sections %}<article class="card subject"><div class="subject-head"><span class="icon {{ section.color }}">{{ section.icon }}</span><div><h3>{{ section.title }}</h3><small>{{ section.subtitle }}</small></div></div>
+        {% for task in section.tasks %}<label class="task"><span class="task-copy"><span class="task-title">{{ task.title }}</span></span><input class="check" type="checkbox" data-group="once" data-id="{{ task.id }}" data-date="{{ assignment.date }}" aria-label="完成{{ task.title }}"></label>{% endfor %}
+        {% if section.details %}<div class="details">{% if section.details_title %}<strong>{{ section.details_title }}</strong>{% endif %}<ol>{% for item in section.details %}<li>{{ item }}</li>{% endfor %}</ol></div>{% endif %}
+        {% if section.note %}<div class="note">{{ section.note }}</div>{% endif %}
+      </article>{% endfor %}
+      {% if assignment.memos %}<article class="card memo"><h3>🏫 校务备忘</h3>{% for memo in assignment.memos %}<div class="memo-item">{{ memo }}</div>{% endfor %}</article>{% endif %}
+    {% endfor %}
+  </section><div class="footer">一步一步，完成今天的成长 ✨</div>
+</main><script>
+  const boxes=[...document.querySelectorAll('.check')];
+  const update=()=>{const daily=boxes.filter(b=>b.dataset.group==='daily');document.querySelector('#daily-progress').textContent=`${daily.filter(b=>b.checked).length} / ${daily.length} 完成`};
+  fetch('/api/status?date={{ today }}').then(r=>r.json()).then(status=>{boxes.forEach(box=>{const key=box.dataset.group==='daily'?box.dataset.id:`${box.dataset.date}:${box.dataset.id}`;box.checked=!!status[box.dataset.group][key]});update()}).catch(()=>{});
+  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date:box.dataset.date,done})});if(!response.ok)throw Error('保存失败');update()}catch{box.checked=!done;alert('保存失败，请稍后重试')}finally{box.disabled=false}}));
+  const tabs=[...document.querySelectorAll('.tab')];tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(next);tabs[next].focus()}})});
+  function select(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.querySelector('#'+tab.getAttribute('aria-controls')).hidden=i!==index})}
+</script></body></html>

@@ -1,0 +1,19 @@
+{
+  "daily": [
+    {"id": "rope", "title": "跳绳", "description": "每天练习，动起来更有活力", "icon": "🪢", "color": "peach"},
+    {"id": "read", "title": "阅读", "description": "每天阅读，发现新的故事", "icon": "📖", "color": "blue"},
+    {"id": "english", "title": "英语打卡营接龙", "description": "参加的同学每天完成接龙", "icon": "💬", "color": "green"}
+  ],
+  "assignments": [
+    {
+      "date": "2026-09-30",
+      "sections": [
+        {"title": "语文", "subtitle": "拼音书写", "icon": "📖", "color": "peach", "tasks": [{"id": "chinese", "title": "拼音《d t n l》书写"}]},
+        {"title": "数学", "subtitle": "整理与复习", "icon": "🔢", "color": "blue", "tasks": [{"id": "math", "title": "完成《整理与复习》书 P27–28"}], "details_title": "单元核心知识点", "details": ["数数：有序数出 1～10 个物体，不重复、不遗漏。", "数的意义：数字既可表示 1 个个体，也可表示一类物体的整体。", "几个 vs 第几：“几个”是总数量；“第几”是排队位置，注意从哪边开始数。", "比多少：一一对应比较，认识 ＞、＜、＝，会比较 10 以内数的大小并描述谁多谁少。"]},
+        {"title": "英语", "subtitle": "L1-B 第二讲", "icon": "🔤", "color": "purple", "tasks": [{"id": "english-homework", "title": "完成第二次课后作业"}, {"id": "english-review", "title": "复习课程收获清单"}], "details": ["绘本阅读：The Big Hill", "词汇：big 大的 / hill 山丘 / little 小的 / bird 小鸟 / sun 太阳 / look 看 / hungry 饥饿的 / fly 飞 / dinosaur 恐龙", "词句拓展：long 长的 / short 短的 / big 大的 / small 小的 / clean 干净的 / dirty 脏的", "句型：— Have you got …?（你有……吗？）— Yes, I have. / No, I haven't.（是的，我有。/ 不，我没有。）", "字母组合 ue：flue（烟道）、glue（胶水）、Sue（人名 Sue）", "⭐ 重点：字母 Mm、Nn 及当堂词汇。"], "note": "下节课有书写练习。提前准备：铅笔、橡皮、资料一、资料二。"},
+        {"title": "机器人课", "subtitle": "有时间时完成", "icon": "🤖", "color": "green", "tasks": [{"id": "robot", "title": "云泽当“小老师”，给爸爸回顾工程报告"}], "details_title": "讲清楚三件事", "details": ["这堂课学了什么内容？", "用到了什么结构？", "为什么用到这个结构？", "爸爸可以当“学生”提问，也可以让云泽独立讲解，练习表达和逻辑思维。"]}
+      ],
+      "memos": ["🇨🇳 已发放小国旗；如去天安门看升旗仪式，可以带上。", "👖 校服加绒裤已发放，注意查收。", "🎊 国庆假期快乐！"]
+    }
+  ]
+}
