@@ -1,0 +1,9 @@
+[project]
+name = "tuan"
+version = "0.1.0"
+description = "团团打卡 Flask 应用"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Flask>=3.0,<4",
+]
