@@ -22,11 +22,30 @@
       {% if assignment.memos %}<article class="card memo"><h3>🏫 校务备忘</h3>{% for memo in assignment.memos %}<div class="memo-item">{{ memo }}</div>{% endfor %}</article>{% endif %}
     {% endfor %}
   </section><div class="footer">一步一步，完成今天的成长 ✨</div>
-</main><script>
+</main>
+<dialog id="celebration" aria-labelledby="reward-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="reward-title">今日任务全部完成！</h2><div class="reward-points">积分 <strong>+10</strong></div><p>每一份努力，都在闪闪发光</p><button id="close-celebration">太棒啦！</button></div></dialog>
+<script>
   const boxes=[...document.querySelectorAll('.check')], dailyBoxes=boxes.filter(b=>b.dataset.group==='daily');
   const dialog=document.querySelector('#daily-dialog'), today={{ today|tojson }};
   let month=new Date(Number(today.slice(0,4)),Number(today.slice(5,7))-1,1), loadVersion=0, calendarVersion=0;
   const update=()=>{document.querySelector('#daily-progress').textContent=`${dailyBoxes.filter(b=>b.checked).length} / ${dailyBoxes.length} 完成`};
+  const savedDaily=new Map(), celebrated=new Set(), reward=document.querySelector('#celebration');
+  let rewardTimer;
+  function celebrate(date){
+    const status=savedDaily.get(date), key='tuan-celebrated:'+date;
+    if(date!==today||!dailyBoxes.length||!dailyBoxes.every(box=>status?.[box.dataset.id])||celebrated.has(date))return;
+    try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1')}catch{}
+    celebrated.add(date);
+    const particles=reward.querySelector('.reward-particles');particles.replaceChildren();
+    for(let i=0;i<48;i++){
+      const particle=document.createElement('i'), angle=Math.random()*Math.PI*2, distance=140+Math.random()*200;
+      particle.style.cssText=`--x:${Math.cos(angle)*distance}px;--y:${Math.sin(angle)*distance}px;--spin:${Math.random()*720}deg;--delay:${Math.random()*.25}s;background:${['#ffd64a','#ff719a','#72dfbd','#8e93ff','#ffac58'][i%5]}`;
+      particles.append(particle);
+    }
+    reward.showModal();clearTimeout(rewardTimer);rewardTimer=setTimeout(()=>reward.close(),3500);
+  }
+  document.querySelector('#close-celebration').addEventListener('click',()=>reward.close());
+  reward.addEventListener('close',()=>clearTimeout(rewardTimer));
   async function renderCalendar(){
     const version=++calendarVersion, monthKey=`${month.getFullYear()}-${String(month.getMonth()+1).padStart(2,'0')}`;
     document.querySelector('#month-title').textContent=`${month.getFullYear()}年${month.getMonth()+1}月`;
@@ -48,7 +67,7 @@
   async function openDay(date){
     const version=++loadVersion;document.querySelector('#daily-date').textContent=date;document.querySelector('#daily-error').hidden=true;
     dailyBoxes.forEach(box=>{box.dataset.date=date;box.checked=false;box.disabled=true});update();dialog.showModal();
-    try{const response=await fetch('/api/status?date='+date);if(!response.ok)throw Error();const status=await response.json();if(version!==loadVersion)return;dailyBoxes.forEach(box=>{box.checked=!!status.daily[box.dataset.id];box.disabled=false});update()}
+    try{const response=await fetch('/api/status?date='+date);if(!response.ok)throw Error();const status=await response.json();if(version!==loadVersion)return;savedDaily.set(date,{...status.daily});dailyBoxes.forEach(box=>{box.checked=!!status.daily[box.dataset.id];box.disabled=false});update()}
     catch{if(version===loadVersion)document.querySelector('#daily-error').hidden=false}
   }
   document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());
@@ -56,7 +75,7 @@
   for(const [id,step] of [['previous-month',-1],['next-month',1]])document.querySelector('#'+id).addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()+step,1);renderCalendar()});
   renderCalendar();
   fetch('/api/status?date='+today).then(r=>{if(!r.ok)throw Error();return r.json()}).then(status=>{boxes.filter(b=>b.dataset.group==='once').forEach(box=>{box.checked=!!status.once[`${box.dataset.date}:${box.dataset.id}`]})}).catch(()=>{});
-  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily')renderCalendar();if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false}}));
+  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily'){const status=savedDaily.get(date)||{};status[box.dataset.id]=done;savedDaily.set(date,status);renderCalendar();if(done)celebrate(date);}if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false}}));
   const tabs=[...document.querySelectorAll('.tab')];tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(next);tabs[next].focus()}})});
   function select(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.querySelector('#'+tab.getAttribute('aria-controls')).hidden=i!==index})}
 </script></body></html>
