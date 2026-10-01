@@ -23,29 +23,26 @@
     {% endfor %}
   </section><div class="footer">一步一步，完成今天的成长 ✨</div>
 </main>
-<dialog id="celebration" aria-labelledby="reward-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="reward-title">今日任务全部完成！</h2><div class="reward-points">积分 <strong>+10</strong></div><p>每一份努力，都在闪闪发光</p><button id="close-celebration">太棒啦！</button></div></dialog>
+<dialog id="celebration" aria-labelledby="reward-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="reward-title">今日任务全部完成！</h2><div class="reward-points">积分 <strong>+10</strong></div><p>每一份努力，都在闪闪发光</p><button id="close-celebration" aria-label="关闭庆祝弹窗">×</button></div></dialog>
 <script>
   const boxes=[...document.querySelectorAll('.check')], dailyBoxes=boxes.filter(b=>b.dataset.group==='daily');
   const dialog=document.querySelector('#daily-dialog'), today={{ today|tojson }};
   let month=new Date(Number(today.slice(0,4)),Number(today.slice(5,7))-1,1), loadVersion=0, calendarVersion=0;
   const update=()=>{document.querySelector('#daily-progress').textContent=`${dailyBoxes.filter(b=>b.checked).length} / ${dailyBoxes.length} 完成`};
-  const savedDaily=new Map(), celebrated=new Set(), reward=document.querySelector('#celebration');
-  let rewardTimer;
+  const savedDaily=new Map(), reward=document.querySelector('#celebration');
   function celebrate(date){
-    const status=savedDaily.get(date), key='tuan-celebrated:'+date;
-    if(date!==today||!dailyBoxes.length||!dailyBoxes.every(box=>status?.[box.dataset.id])||celebrated.has(date))return;
-    try{if(localStorage.getItem(key))return;localStorage.setItem(key,'1')}catch{}
-    celebrated.add(date);
+    const status=savedDaily.get(date);
+    if(date!==today||!dailyBoxes.length||!dailyBoxes.every(box=>status?.[box.dataset.id]))return;
     const particles=reward.querySelector('.reward-particles');particles.replaceChildren();
     for(let i=0;i<48;i++){
       const particle=document.createElement('i'), angle=Math.random()*Math.PI*2, distance=140+Math.random()*200;
       particle.style.cssText=`--x:${Math.cos(angle)*distance}px;--y:${Math.sin(angle)*distance}px;--spin:${Math.random()*720}deg;--delay:${Math.random()*.25}s;background:${['#ffd64a','#ff719a','#72dfbd','#8e93ff','#ffac58'][i%5]}`;
       particles.append(particle);
     }
-    reward.showModal();clearTimeout(rewardTimer);rewardTimer=setTimeout(()=>reward.close(),3500);
+    reward.showModal();
   }
   document.querySelector('#close-celebration').addEventListener('click',()=>reward.close());
-  reward.addEventListener('close',()=>clearTimeout(rewardTimer));
+  reward.addEventListener('click',event=>{if(event.target===reward)reward.close()});
   async function renderCalendar(){
     const version=++calendarVersion, monthKey=`${month.getFullYear()}-${String(month.getMonth()+1).padStart(2,'0')}`;
     document.querySelector('#month-title').textContent=`${month.getFullYear()}年${month.getMonth()+1}月`;
