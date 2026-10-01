@@ -1,3 +1,4 @@
+import calendar
 import json
 import sqlite3
 from datetime import date, datetime
@@ -54,6 +55,28 @@ def create_app(config=None):
             for group, scope, task_id, done in db.execute("SELECT task_group, scope, task_id, done FROM checkins WHERE (task_group = 'daily' AND scope = ?) OR task_group = 'once'", (day,)):
                 result[group][task_id if group == "daily" else f"{scope}:{task_id}"] = bool(done)
         return jsonify(result)
+
+    @app.get("/api/calendar")
+    def get_calendar():
+        month = request.args.get("month", "")
+        if not valid_date(month + "-01"):
+            return jsonify(error="月份格式应为 YYYY-MM"), 400
+        task_ids = {task["id"] for task in load_tasks()["daily"]}
+        completed = {}
+        with connection() as db:
+            for scope, task_id in db.execute("SELECT scope, task_id FROM checkins WHERE task_group = 'daily' AND done = 1 AND scope LIKE ?", (month + "-%",)):
+                completed.setdefault(scope, set()).add(task_id)
+        current_day = today()
+        days = {}
+        for number in range(1, calendar.monthrange(int(month[:4]), int(month[5:]))[1] + 1):
+            day = f"{month}-{number:02d}"
+            if task_ids and task_ids <= completed.get(day, set()):
+                days[day] = "complete"
+            elif "2026-10-01" <= day < current_day:
+                days[day] = "overdue"
+            else:
+                days[day] = "pending"
+        return jsonify(days=days)
 
     @app.put("/api/status")
     def put_status():

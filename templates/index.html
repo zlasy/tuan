@@ -3,9 +3,14 @@
 <body><main class="app">
   <header class="hero"><div class="eyebrow">✨ LITTLE STEPS, BIG GROWTH</div><h1>团团打卡</h1><p>每天进步一点点，认真完成今天的小目标。</p></header>
   <div class="tabs" role="tablist" aria-label="任务分类"><button class="tab" role="tab" id="tab-daily" aria-controls="daily" aria-selected="true">☀️ 每日任务</button><button class="tab" role="tab" id="tab-once" aria-controls="once" aria-selected="false">📚 不定期任务</button></div>
-  <section class="panel" id="daily" role="tabpanel" aria-labelledby="tab-daily"><div class="section-head"><div><h2>每日小目标</h2><p>{{ today }}</p></div><span class="progress" id="daily-progress">0 / {{ daily|length }} 完成</span></div>
-    {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
-    <p class="hint">每日打卡按日期保存，第二天重新开始。</p>
+  <section class="panel" id="daily" role="tabpanel" aria-labelledby="tab-daily">
+    <div class="section-head"><h2>每日小目标</h2><div class="month-nav"><button id="previous-month" aria-label="上个月">‹</button><span id="month-title"></span><button id="next-month" aria-label="下个月">›</button></div></div>
+    <div class="card calendar"><div class="weekdays">{% for day in ['日','一','二','三','四','五','六'] %}<span>{{ day }}</span>{% endfor %}</div><div id="calendar-days" class="calendar-days"></div></div>
+    <p id="calendar-error" role="alert" hidden>月历状态读取失败，请切换月份重试。</p>
+    <p class="hint">点击日期查看任务和打卡，全部完成为绿色，逾期未完成为红色。</p>
+    <dialog id="daily-dialog" aria-labelledby="daily-date"><div class="section-head"><div><h2 id="daily-date"></h2><span class="progress" id="daily-progress"></span></div><button id="close-dialog" aria-label="关闭任务弹窗">×</button></div><p id="daily-error" role="alert" hidden>读取失败，请关闭后重试。</p>
+      {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
+    </dialog>
   </section>
   <section class="panel" id="once" role="tabpanel" aria-labelledby="tab-once" hidden><div class="section-head"><div><h2>不定期任务</h2><p>按学科逐项完成</p></div></div>
     {% for assignment in assignments %}<div class="date-pill assignment-date">{{ assignment.date }} 布置</div>
@@ -18,10 +23,40 @@
     {% endfor %}
   </section><div class="footer">一步一步，完成今天的成长 ✨</div>
 </main><script>
-  const boxes=[...document.querySelectorAll('.check')];
-  const update=()=>{const daily=boxes.filter(b=>b.dataset.group==='daily');document.querySelector('#daily-progress').textContent=`${daily.filter(b=>b.checked).length} / ${daily.length} 完成`};
-  fetch('/api/status?date={{ today }}').then(r=>r.json()).then(status=>{boxes.forEach(box=>{const key=box.dataset.group==='daily'?box.dataset.id:`${box.dataset.date}:${box.dataset.id}`;box.checked=!!status[box.dataset.group][key]});update()}).catch(()=>{});
-  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date:box.dataset.date,done})});if(!response.ok)throw Error('保存失败');update()}catch{box.checked=!done;alert('保存失败，请稍后重试')}finally{box.disabled=false}}));
+  const boxes=[...document.querySelectorAll('.check')], dailyBoxes=boxes.filter(b=>b.dataset.group==='daily');
+  const dialog=document.querySelector('#daily-dialog'), today={{ today|tojson }};
+  let month=new Date(Number(today.slice(0,4)),Number(today.slice(5,7))-1,1), loadVersion=0, calendarVersion=0;
+  const update=()=>{document.querySelector('#daily-progress').textContent=`${dailyBoxes.filter(b=>b.checked).length} / ${dailyBoxes.length} 完成`};
+  async function renderCalendar(){
+    const version=++calendarVersion, monthKey=`${month.getFullYear()}-${String(month.getMonth()+1).padStart(2,'0')}`;
+    document.querySelector('#month-title').textContent=`${month.getFullYear()}年${month.getMonth()+1}月`;
+    const grid=document.querySelector('#calendar-days');grid.replaceChildren();
+    const offset=month.getDay(), count=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();
+    for(let i=0;i<offset;i++)grid.append(document.createElement('span'));
+    for(let day=1;day<=count;day++){
+      const date=`${month.getFullYear()}-${String(month.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const button=document.createElement('button');button.textContent=day;button.className='calendar-day';button.dataset.date=date;button.setAttribute('aria-label',date+' 每日任务');
+      if(date===today){button.setAttribute('aria-current','date')}
+      button.addEventListener('click',()=>openDay(date));grid.append(button);
+    }
+    document.querySelector('#calendar-error').hidden=true;
+    try{
+      const response=await fetch('/api/calendar?month='+monthKey);if(!response.ok)throw Error();const status=await response.json();if(version!==calendarVersion)return;
+      grid.querySelectorAll('button').forEach(button=>{const state=status.days[button.dataset.date];button.classList.add(state);button.setAttribute('aria-label',button.dataset.date+' '+({complete:'全部完成',overdue:'逾期未完成',pending:'未完成或未开始'}[state]))});
+    }catch{if(version===calendarVersion)document.querySelector('#calendar-error').hidden=false}
+  }
+  async function openDay(date){
+    const version=++loadVersion;document.querySelector('#daily-date').textContent=date;document.querySelector('#daily-error').hidden=true;
+    dailyBoxes.forEach(box=>{box.dataset.date=date;box.checked=false;box.disabled=true});update();dialog.showModal();
+    try{const response=await fetch('/api/status?date='+date);if(!response.ok)throw Error();const status=await response.json();if(version!==loadVersion)return;dailyBoxes.forEach(box=>{box.checked=!!status.daily[box.dataset.id];box.disabled=false});update()}
+    catch{if(version===loadVersion)document.querySelector('#daily-error').hidden=false}
+  }
+  document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>{loadVersion++});
+  for(const [id,step] of [['previous-month',-1],['next-month',1]])document.querySelector('#'+id).addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()+step,1);renderCalendar()});
+  renderCalendar();
+  fetch('/api/status?date='+today).then(r=>{if(!r.ok)throw Error();return r.json()}).then(status=>{boxes.filter(b=>b.dataset.group==='once').forEach(box=>{box.checked=!!status.once[`${box.dataset.date}:${box.dataset.id}`]})}).catch(()=>{});
+  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily')renderCalendar();if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false}}));
   const tabs=[...document.querySelectorAll('.tab')];tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(next);tabs[next].focus()}})});
   function select(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.querySelector('#'+tab.getAttribute('aria-controls')).hidden=i!==index})}
 </script></body></html>

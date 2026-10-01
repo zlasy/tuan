@@ -6,6 +6,12 @@
   ],
   "assignments": [
     {
+      "date": "2026-10-01",
+      "sections": [
+        {"title": "围棋", "subtitle": "第二十课", "icon": "⚫", "color": "green", "tasks": [{"id": "go-lesson-20", "title": "完成第二十课作业"}]}
+      ]
+    },
+    {
       "date": "2026-09-30",
       "sections": [
         {"title": "语文", "subtitle": "拼音书写", "icon": "📖", "color": "peach", "tasks": [{"id": "chinese", "title": "拼音《d t n l》书写"}]},
