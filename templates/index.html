@@ -32,7 +32,7 @@
   const savedDaily=new Map(), reward=document.querySelector('#celebration');
   function celebrate(date){
     const status=savedDaily.get(date);
-    if(date!==today||!dailyBoxes.length||!dailyBoxes.every(box=>status?.[box.dataset.id]))return;
+    if(!dailyBoxes.length||!dailyBoxes.every(box=>status?.[box.dataset.id]))return;
     const particles=reward.querySelector('.reward-particles');particles.replaceChildren();
     for(let i=0;i<48;i++){
       const particle=document.createElement('i'), angle=Math.random()*Math.PI*2, distance=140+Math.random()*200;
