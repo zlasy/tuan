@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><title>阅读识字 · 一年级上册</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><link rel="stylesheet" href="{{ url_for('static', filename='games.css') }}"></head>
+<body><main class="app" id="reading-game">
+  <header class="hero"><a class="back" href="/">← 返回打卡</a><div class="eyebrow">📖 每天读一读</div><h1>阅读识字</h1><p>一年级上册 · 选择课名，大声读出词语。</p></header>
+  <div class="reading-tabs" role="tablist" aria-label="选择课文">
+    {% for lesson in lessons %}<button type="button" class="chip{% if loop.first %} active{% endif %}" role="tab" id="lesson-tab-{{ loop.index0 }}" aria-controls="lesson-{{ loop.index0 }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}">{{ lesson.title }}</button>{% endfor %}
+  </div>
+  <nav class="reading-nav" aria-label="课文翻页"><button type="button" class="chip" id="reading-previous" disabled>← 上一课</button><span id="reading-progress" role="status">1 / {{ lessons|length }}</span><button type="button" class="chip" id="reading-next">下一课 →</button></nav>
+  {% for lesson in lessons %}<section id="lesson-{{ loop.index0 }}" role="tabpanel" aria-labelledby="lesson-tab-{{ loop.index0 }}"{% if not loop.first %} hidden{% endif %}>
+    <div class="section-head"><h2>{{ lesson.title }}</h2><span class="date-pill">课本 P{{ lesson.page }}</span></div>
+    <article class="card reading-card"><h3>认读词 <small>读熟这些词语</small></h3><div class="reading-words">{% for word in lesson.reading %}<span>{{ word }}</span>{% endfor %}</div></article>
+    {% if lesson.writing %}<article class="card reading-card writing-card"><h3>听写词 <small>这些词语要求会写</small></h3><div class="reading-words">{% for word in lesson.writing %}<span>{{ word }}</span>{% endfor %}</div></article>{% endif %}
+  </section>{% endfor %}
+  <div class="footer">一个词一个词，慢慢读清楚 🌱</div>
+</main>
+<script>
+  const tabs=[...document.querySelectorAll('.reading-tabs [role="tab"]')], panels=[...document.querySelectorAll('[role="tabpanel"]')];
+  const previous=document.querySelector('#reading-previous'), next=document.querySelector('#reading-next');
+  let current=0;
+  function select(index,focus=false){
+    current=index;
+    tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===index);tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;panels[i].hidden=i!==index});
+    previous.disabled=index===0;next.disabled=index===tabs.length-1;
+    document.querySelector('#reading-progress').textContent=`${index+1} / ${tabs.length}`;
+    if(focus)tabs[index].focus({preventScroll:true});
+    const strip=document.querySelector('.reading-tabs'), tab=tabs[index];
+    strip.scrollTo({left:strip.scrollLeft+tab.getBoundingClientRect().left-strip.getBoundingClientRect().left-(strip.clientWidth-tab.offsetWidth)/2});
+  }
+  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',event=>{
+    const index={ArrowRight:(i+1)%tabs.length,ArrowLeft:(i+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[event.key];
+    if(index!==undefined){event.preventDefault();select(index,true)}
+  })});
+  previous.addEventListener('click',()=>select(current-1));next.addEventListener('click',()=>select(current+1));
+</script></body></html>

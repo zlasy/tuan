@@ -57,3 +57,19 @@
 .speaker:focus-visible{outline:3px solid #f4a47c;outline-offset:2px}
 .answer-row{display:flex;gap:10px;justify-content:center;margin-top:16px}
 @media (prefers-reduced-motion: reduce){.flash-card{transition:none}}
+
+/* 阅读识字：课名标签横向滑动，每次阅读 PDF 中的一格。 */
+.reading-tabs{position:sticky;top:0;z-index:1;display:flex;gap:8px;overflow-x:auto;padding:10px 0;background:#fff8ee;scrollbar-width:thin}
+.reading-tabs .chip{flex:none;min-height:44px;white-space:nowrap}
+.reading-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:14px 0 22px}
+.reading-nav .chip{min-height:44px}.reading-nav .chip:disabled{opacity:.4;cursor:default}
+#reading-progress{font-size:13px;color:#64748b;white-space:nowrap}
+#reading-game [role="tabpanel"][hidden]{display:none}
+#reading-game .section-head{align-items:center;gap:10px}
+#reading-game .section-head h2{min-width:0;overflow-wrap:anywhere}
+#reading-game .date-pill{flex:none}
+.reading-card{padding:18px 16px}.reading-card h3{margin:0 0 16px;color:#487744;font-size:17px}
+.reading-card h3 small{display:block;margin-top:5px;color:#64748b;font-size:12px;font-weight:400}
+.reading-words{display:flex;flex-wrap:wrap;gap:10px 8px}
+.reading-words span{padding:8px 12px;background:#f1f8ee;border-radius:12px;font-size:26px;font-weight:650;line-height:1.5;white-space:nowrap}
+.writing-card h3{color:#a6532d}.writing-card .reading-words span{background:#fff3e9}

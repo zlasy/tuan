@@ -117,6 +117,11 @@ def create_app(config=None):
     def words_deck_api():
         return jsonify(wordcards.build_deck(request.args.get("category")))
 
+    @app.get("/games/reading")
+    def game_reading():
+        lessons = json.loads((BASE / "reading_lessons.json").read_text(encoding="utf-8"))
+        return render_template("game_reading.html", lessons=lessons)
+
     return app
 
 
