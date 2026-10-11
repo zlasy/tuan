@@ -7,6 +7,9 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, current_app, jsonify, render_template, request
 
+import mathpuzzle
+import wordcards
+
 
 BASE = Path(__file__).resolve().parent
 
@@ -95,6 +98,24 @@ def create_app(config=None):
         with connection() as db:
             db.execute("INSERT INTO checkins (task_group, scope, task_id, done) VALUES (?, ?, ?, ?) ON CONFLICT(task_group, scope, task_id) DO UPDATE SET done = excluded.done", (group, scope, task_id, int(done)))
         return jsonify(group=group, id=task_id, date=day, done=done)
+
+    @app.get("/games/math")
+    def game_math():
+        top = 20 if request.args.get("top") == "20" else 40
+        return render_template("game_math.html", puzzle=mathpuzzle.build_puzzle(top))
+
+    @app.get("/api/games/math/puzzle")
+    def math_puzzle_api():
+        top = 20 if request.args.get("top") == "20" else 40
+        return jsonify(mathpuzzle.build_puzzle(top))
+
+    @app.get("/games/words")
+    def game_words():
+        return render_template("game_words.html", deck=wordcards.build_deck(request.args.get("category")), categories=wordcards.CATEGORIES)
+
+    @app.get("/api/games/words/deck")
+    def words_deck_api():
+        return jsonify(wordcards.build_deck(request.args.get("category")))
 
     return app
 

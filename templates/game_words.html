@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><meta name="description" content="英语单词闪卡：翻一翻，看看你认识几个"><title>英语单词 · 闪卡</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><link rel="stylesheet" href="{{ url_for('static', filename='games.css') }}"></head>
+<body><main class="app">
+  <header class="hero"><a class="back" href="/">← 返回打卡</a><div class="eyebrow">✨ WORD FLASHCARDS</div><h1>🔤 英语单词 · 闪卡</h1><p>先看单词猜猜意思，点击卡片翻面对答案。认识的打勾，没记住的待会儿还会再出现。</p></header>
+  <div class="toolbar">
+    <div class="chip-row" role="group" aria-label="单词分类">{% for key, label in categories %}<button class="chip" data-category="{{ key }}">{{ label }}</button>{% endfor %}</div>
+    <div class="chip-row"><button id="new-deck" class="chip action">🔄 换一批</button></div>
+  </div>
+  <p class="progress" id="progress"></p>
+  <p class="error" id="deck-error" role="alert" hidden>卡片加载失败，请稍后重试。</p>
+  <div id="scene" class="flash-scene">
+    <div id="flash-card" class="flash-card" role="button" tabindex="0" aria-label="单词卡片，点击翻面">
+      <div class="flash-face front"><button id="speak" class="speaker" aria-label="朗读单词">🔊</button><span id="card-emoji" class="flash-emoji"></span><span id="card-word" class="flash-word"></span><span class="flash-hint">猜猜什么意思？点击翻面</span></div>
+      <div class="flash-face back"><span id="card-cn" class="flash-cn"></span><span id="card-example" class="flash-example"></span><span class="flash-hint">再点一下翻回正面</span></div>
+    </div>
+    <div class="answer-row"><button id="know" class="chip action big">😄 认识啦</button><button id="again" class="chip action big">🤔 再想想</button></div>
+  </div>
+  <div class="footer">读一读，记一记，单词宝宝跟你走 ✨</div>
+</main>
+<dialog id="win" aria-labelledby="win-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="win-title">全部认识！</h2><p id="win-detail">单词小达人就是你</p><button id="restart" class="chip action">再来一组</button><button id="close-win" class="dialog-close" aria-label="关闭庆祝弹窗">×</button></div></dialog>
+<script>
+  const card = document.querySelector('#flash-card'), progress = document.querySelector('#progress'), errorTip = document.querySelector('#deck-error'), win = document.querySelector('#win');
+  let count = 0, queue = [], index = 0, known = 0;
+
+  function speak(text){
+    try{
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US'; utterance.rate = .75;
+      speechSynthesis.speak(utterance);
+    }catch{}
+  }
+
+  function show(){
+    const item = queue[index];
+    card.classList.remove('flipped');
+    document.querySelector('#card-emoji').textContent = item.card.emoji;
+    document.querySelector('#card-word').textContent = item.card.word;
+    document.querySelector('#card-cn').textContent = `${item.card.emoji} ${item.card.cn}`;
+    document.querySelector('#card-example').innerHTML = `${item.card.example}<small>${item.card.example_cn}</small>`;
+    refresh();
+  }
+
+  function refresh(){
+    progress.textContent = queue.length ? `还剩 ${queue.length} 张 · 已认识 ${known} 个` : '全部认识啦！';
+  }
+
+  function next(){
+    if (!queue.length){ winWin(); return; }
+    if (index >= queue.length) index = 0;
+    show();
+  }
+
+  function winWin(){
+    refresh();
+    document.querySelector('#win-detail').textContent = `本轮认识 ${known} 个单词，太棒啦`;
+    const particles = win.querySelector('.reward-particles'); particles.replaceChildren();
+    for (let i = 0; i < 48; i++){
+      const particle = document.createElement('i'), angle = Math.random() * Math.PI * 2, distance = 140 + Math.random() * 200;
+      particle.style.cssText = `--x:${Math.cos(angle) * distance}px;--y:${Math.sin(angle) * distance}px;--spin:${Math.random() * 720}deg;--delay:${Math.random() * .25}s;background:${['#ffd64a', '#ff719a', '#72dfbd', '#8e93ff', '#ffac58'][i % 5]}`;
+      particles.append(particle);
+    }
+    win.showModal();
+  }
+
+  const flip = () => { card.classList.toggle('flipped'); if (card.classList.contains('flipped')) speak(queue[index].card.word); };
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' '){ event.preventDefault(); flip(); } });
+  document.querySelector('#speak').addEventListener('click', event => { event.stopPropagation(); speak(queue[index].card.word); });
+
+  document.querySelector('#know').addEventListener('click', () => {
+    queue.splice(index, 1); known++;
+    if (!queue.length) winWin(); else next();
+  });
+  document.querySelector('#again').addEventListener('click', () => {
+    const item = queue.splice(index, 1)[0];
+    queue.splice(Math.min(index + 3, queue.length), 0, item);
+    next();
+  });
+
+  function start(deck){
+    win.close(); errorTip.hidden = true;
+    count = deck.count; known = 0; index = 0;
+    queue = deck.cards.map(card => ({card}));
+    document.querySelectorAll('.chip[data-category]').forEach(chip => chip.classList.toggle('active', chip.dataset.category === deck.category));
+    show();
+  }
+
+  async function loadDeck(category){
+    errorTip.hidden = true; win.close();
+    try{
+      const response = await fetch('/api/games/words/deck?category=' + encodeURIComponent(category || 'all'));
+      if (!response.ok) throw Error();
+      start(await response.json());
+    }catch{ errorTip.hidden = false; }
+  }
+
+  document.querySelectorAll('.chip[data-category]').forEach(chip => chip.addEventListener('click', () => loadDeck(chip.dataset.category)));
+  document.querySelector('#new-deck').addEventListener('click', () => loadDeck(currentCategory()));
+  document.querySelector('#restart').addEventListener('click', () => loadDeck(currentCategory()));
+  document.querySelector('#close-win').addEventListener('click', () => win.close());
+  win.addEventListener('click', event => { if (event.target === win) win.close(); });
+
+  const currentCategory = () => document.querySelector('.chip[data-category].active')?.dataset.category || 'all';
+
+  start({{ deck|tojson }});
+</script></body></html>
