@@ -56,6 +56,13 @@
 .speaker{border:0;border-radius:50%;width:38px;height:38px;background:#fff0df;color:#93652d;font-size:18px;line-height:1;padding:0;position:absolute;top:12px;right:12px}
 .speaker:focus-visible{outline:3px solid #f4a47c;outline-offset:2px}
 .answer-row{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.word-categories{width:100%;min-width:0;overflow-x:auto;padding:3px 2px 7px;scrollbar-width:thin}
+.word-categories .chip{flex:none;min-height:44px;white-space:nowrap}
+.flash-word{max-width:100%;text-align:center;overflow-wrap:anywhere}
+.flash-card.sentence{aspect-ratio:auto;height:360px}
+.flash-card.sentence .flash-word{font-size:clamp(23px,6vw,28px);line-height:1.4}
+.flash-card.sentence .flash-cn{font-size:22px;line-height:1.45;text-align:center}
+.flash-card.sentence .flash-face{padding:44px 18px 20px}
 @media (prefers-reduced-motion: reduce){.flash-card{transition:none}}
 
 /* 阅读识字：课名标签横向滑动，每次阅读 PDF 中的一格。 */

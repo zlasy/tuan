@@ -20,6 +20,7 @@ uv run python app.py
 首页第三个 tab「🎮 小游戏」是游戏列表，后续会陆续添加。当前包含：
 
 - **数学思维 · 交叉算式**（`/games/math`）：仿照纸质《20以内加减法交叉思维练习》，在 13×13 网格中填数使横、纵共 18 道算式成立，支持 20 以内 / 40 以内切换。谜题由 `mathpuzzle.py` 实时生成（链式回溯求解，保证每题有解、每道算式至少有一个提示数字），前端本地判题，`/api/games/math/puzzle?top=40` 可直接取新题。
+- **英语单词 · 闪卡**（`/games/words`）：369 个单词及短语、40 个常见句式，按 20 个主题分类，每轮随机抽 10 张。支持翻面、英文朗读和未掌握卡片复习。词库位于 `wordcards.py`，面向一、二年级，以 Power Up 1–2、RAZ aa–J、牛津树 1–5 级为选词范围参考；这是精选练习词库，例句自编，不是各教材逐册完整词表。参考 [Power Up 2 课程大纲](https://www.cambridge.org/us/files/3815/6768/5029/Power_Up_Power_Up_L2_Scope_And_Sequence_9781108413763_Scope_and_Sequence.pdf)、[Reading A-Z 阅读技能表](https://www.readinga-z.com/helpful-tools/books-by-skills-chart/)、[牛津树级别说明](https://home.oxfordowl.co.uk/reading/reading-schemes-oxford-levels/oxford-reading-tree-levels/)。
 
 运行测试：
 
