@@ -12,14 +12,16 @@
       {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
     </dialog>
   </section>
-  <section class="panel" id="once" role="tabpanel" aria-labelledby="tab-once" hidden><div class="section-head"><div><h2>不定期任务</h2><p>按学科逐项完成</p></div></div>
-    {% for assignment in assignments %}<div class="date-pill assignment-date">{{ assignment.date }} 布置</div>
-      {% for section in assignment.sections %}<article class="card subject"><div class="subject-head"><span class="icon {{ section.color }}">{{ section.icon }}</span><div><h3>{{ section.title }}</h3><small>{{ section.subtitle }}</small></div></div>
+  <section class="panel" id="once" role="tabpanel" aria-labelledby="tab-once" hidden><div class="section-head"><div><h2>不定期任务</h2><p>未完成优先，按学科逐项完成</p></div></div>
+    <div id="assignment-list">{% for assignment in assignments %}
+      {% for section in assignment.sections %}<article class="card subject"><div class="date-pill assignment-date">{{ assignment.date }} 布置</div><div class="subject-head"><span class="icon {{ section.color }}">{{ section.icon }}</span><div><h3>{{ section.title }}</h3><small>{{ section.subtitle }}</small></div></div>
         {% for task in section.tasks %}<label class="task"><span class="task-copy"><span class="task-title">{{ task.title }}</span></span><input class="check" type="checkbox" data-group="once" data-id="{{ task.id }}" data-date="{{ assignment.date }}" aria-label="完成{{ task.title }}"></label>{% endfor %}
         {% if section.details %}<div class="details">{% if section.details_title %}<strong>{{ section.details_title }}</strong>{% endif %}<ol>{% for item in section.details %}<li>{{ item }}</li>{% endfor %}</ol></div>{% endif %}
         {% if section.note %}<div class="note">{{ section.note }}</div>{% endif %}
       </article>{% endfor %}
-      {% if assignment.memos %}<article class="card memo"><h3>🏫 校务备忘</h3>{% for memo in assignment.memos %}<div class="memo-item">{{ memo }}</div>{% endfor %}</article>{% endif %}
+    {% endfor %}</div>
+    {% for assignment in assignments %}
+      {% if assignment.memos %}<article class="card memo"><div class="date-pill assignment-date">{{ assignment.date }}</div><h3>🏫 校务备忘</h3>{% for memo in assignment.memos %}<div class="memo-item">{{ memo }}</div>{% endfor %}</article>{% endif %}
     {% endfor %}
   </section>
   <section class="panel" id="games" role="tabpanel" aria-labelledby="tab-games" hidden><div class="section-head"><div><h2>小游戏</h2><p>玩中学，练思维</p></div></div>
@@ -43,6 +45,7 @@
   </section><div class="footer">一步一步，完成今天的成长 ✨</div>
 </main>
 <dialog id="celebration" aria-labelledby="reward-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="reward-title">任务全部完成！</h2><div class="reward-points">积分 <strong>+10</strong></div><p>每一份努力，都在闪闪发光</p><button id="close-celebration" aria-label="关闭庆祝弹窗">×</button></div></dialog>
+<script src="{{ url_for('static', filename='assignments.js') }}"></script>
 <script>
   const boxes=[...document.querySelectorAll('.check')], dailyBoxes=boxes.filter(b=>b.dataset.group==='daily');
   const dialog=document.querySelector('#daily-dialog'), today={{ today|tojson }};
@@ -90,8 +93,8 @@
   dialog.addEventListener('close',()=>{loadVersion++});
   for(const [id,step] of [['previous-month',-1],['next-month',1]])document.querySelector('#'+id).addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()+step,1);renderCalendar()});
   renderCalendar();
-  fetch('/api/status?date='+today).then(r=>{if(!r.ok)throw Error();return r.json()}).then(status=>{boxes.filter(b=>b.dataset.group==='once').forEach(box=>{box.checked=!!status.once[`${box.dataset.date}:${box.dataset.id}`]})}).catch(()=>{});
-  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily'){const status=savedDaily.get(date)||{};status[box.dataset.id]=done;savedDaily.set(date,status);renderCalendar();if(done)celebrate(date);}if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false}}));
+  fetch('/api/status?date='+today).then(r=>{if(!r.ok)throw Error();return r.json()}).then(status=>{boxes.filter(b=>b.dataset.group==='once').forEach(box=>{box.checked=!!status.once[`${box.dataset.date}:${box.dataset.id}`]});sortAssignments()}).catch(()=>{});
+  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily'){const status=savedDaily.get(date)||{};status[box.dataset.id]=done;savedDaily.set(date,status);renderCalendar();if(done)celebrate(date);}if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false;if(box.dataset.group==='once')sortAssignments()}}));
   const tabs=[...document.querySelectorAll('.tab')];tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(next);tabs[next].focus()}})});
   function select(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.querySelector('#'+tab.getAttribute('aria-controls')).hidden=i!==index})}
 </script></body></html>

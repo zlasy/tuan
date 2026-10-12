@@ -2,7 +2,7 @@
 
 结构仿照纸质练习册：13×13 网格上横、纵各若干条算式交叉，
 相邻算式共享数字格。每道算式形如 a + b = c（或 a - b = c），
-所有数字都落在 1~top 之间（默认 40 以内加减法）。
+所有数字都落在 1~top 之间（默认 50 以内加减法）。
 
 生成流程：先随机确定每道算式的运算符，再用带回溯的链式搜索
 为所有数字格赋值（保证每条算式都成立），最后按「每道算式至少
@@ -120,10 +120,10 @@ def _solve(order, ops, top, rng):
     return values if assign(0) else None
 
 
-def build_puzzle(top=40):
+def build_puzzle(top=50):
     """生成一题完整谜题，返回可直接交给前端的字典。"""
-    if top not in (20, 40):
-        top = 40
+    if top not in (50, 100):
+        top = 50
     rng = random.Random()
     order = _order(ANCHORS, rng)
     ops = None

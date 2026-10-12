@@ -6,6 +6,14 @@
   ],
   "assignments": [
     {
+      "date": "2026-10-12",
+      "sections": [
+        {"title": "围棋", "subtitle": "10月15日上课", "icon": "⚫", "color": "green", "tasks": [{"id": "go-homework", "title": "完成围棋作业"}]},
+        {"title": "机器人", "subtitle": "10月18日上课", "icon": "🤖", "color": "green", "tasks": [{"id": "robot-homework", "title": "完成机器人作业"}]},
+        {"title": "英语", "subtitle": "10月18日上课", "icon": "🔤", "color": "purple", "tasks": [{"id": "english-homework", "title": "完成英语作业"}]}
+      ]
+    },
+    {
       "date": "2026-10-01",
       "sections": [
         {"title": "围棋", "subtitle": "第二十课", "icon": "⚫", "color": "green", "tasks": [{"id": "go-lesson-20", "title": "完成第二十课作业"}]}

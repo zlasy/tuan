@@ -101,12 +101,12 @@ def create_app(config=None):
 
     @app.get("/games/math")
     def game_math():
-        top = 20 if request.args.get("top") == "20" else 40
+        top = 100 if request.args.get("top") == "100" else 50
         return render_template("game_math.html", puzzle=mathpuzzle.build_puzzle(top))
 
     @app.get("/api/games/math/puzzle")
     def math_puzzle_api():
-        top = 20 if request.args.get("top") == "20" else 40
+        top = 100 if request.args.get("top") == "100" else 50
         return jsonify(mathpuzzle.build_puzzle(top))
 
     @app.get("/games/words")
