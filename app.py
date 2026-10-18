@@ -1,11 +1,15 @@
 import calendar
+import hmac
 import json
+import os
+import secrets
 import sqlite3
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from flask import Flask, current_app, jsonify, render_template, request
+from dotenv import dotenv_values
+from flask import Flask, current_app, jsonify, redirect, render_template, request, session, url_for
 
 import mathpuzzle
 import wordcards
@@ -37,15 +41,81 @@ def valid_date(value):
 
 def create_app(config=None):
     app = Flask(__name__)
+    env = {**dotenv_values(BASE / ".env", interpolate=False), **os.environ}
     app.config.update(TASK_CONFIG=str(BASE / "tasks.json"), DATABASE=str(BASE / "instance" / "checkins.sqlite3"))
+    app.config.update(SECRET_KEY=env.get("SECRET_KEY"),
+                      ADMIN_USERNAME=env.get("ADMIN_USERNAME", ""),
+                      ADMIN_PASSWORD=env.get("ADMIN_PASSWORD", ""),
+                      PERMANENT_SESSION_LIFETIME=timedelta(hours=8),
+                      SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax")
     if config:
         app.config.update(config)
     Path(app.config["DATABASE"]).parent.mkdir(parents=True, exist_ok=True)
 
+    def auth_configured():
+        return all(app.config.get(key) for key in ("SECRET_KEY", "ADMIN_USERNAME", "ADMIN_PASSWORD"))
+
+    def logged_in():
+        return auth_configured() and session.get("admin") == app.config["ADMIN_USERNAME"]
+
+    def csrf_token():
+        if not auth_configured():
+            return ""
+        if "csrf_token" not in session:
+            session["csrf_token"] = secrets.token_urlsafe(32)
+        return session["csrf_token"]
+
+    def valid_csrf():
+        expected = session.get("csrf_token", "")
+        supplied = request.headers.get("X-CSRF-Token") or request.form.get("csrf_token", "")
+        return bool(expected) and hmac.compare_digest(expected.encode(), supplied.encode())
+
+    @app.after_request
+    def prevent_auth_caching(response):
+        if request.path in ("/", "/login", "/logout", "/api/status"):
+            response.headers["Cache-Control"] = "no-store"
+        return response
+
+    @app.route("/login", methods=["GET", "POST"])
+    def login():
+        wants_json = request.accept_mimetypes.best == "application/json"
+        if not auth_configured():
+            if wants_json:
+                return jsonify(error="管理员登录尚未配置，请联系维护者。"), 503
+            return render_template("login.html", error="管理员登录尚未配置，请联系维护者。", configured=False), 503
+        error, status = None, 200
+        if request.method == "POST":
+            if not valid_csrf():
+                error, status = "页面已过期，请重新登录。", 403
+            else:
+                username = request.form.get("username", "")
+                password = request.form.get("password", "")
+                username_ok = hmac.compare_digest(username.encode(), app.config["ADMIN_USERNAME"].encode())
+                password_ok = hmac.compare_digest(password.encode(), app.config["ADMIN_PASSWORD"].encode())
+                if username_ok and password_ok:
+                    session.clear()
+                    session["admin"] = app.config["ADMIN_USERNAME"]
+                    session.permanent = True
+                    if wants_json:
+                        return jsonify(ok=True)
+                    return redirect(url_for("index"))
+                error, status = "账号或密码错误。", 401
+        if wants_json and error:
+            return jsonify(error=error), status
+        return render_template("login.html", error=error, configured=True, csrf_token=csrf_token()), status
+
+    @app.post("/logout")
+    def logout():
+        if not valid_csrf():
+            return jsonify(error="页面已过期，请刷新后重试。"), 403
+        session.clear()
+        return redirect(url_for("index"))
+
     @app.get("/")
     def index():
         tasks = load_tasks()
-        return render_template("index.html", daily=tasks["daily"], assignments=tasks["assignments"], today=today())
+        return render_template("index.html", daily=tasks["daily"], assignments=tasks["assignments"],
+                               today=today(), logged_in=logged_in(), csrf_token=csrf_token())
 
     @app.get("/api/status")
     def get_status():
@@ -83,6 +153,10 @@ def create_app(config=None):
 
     @app.put("/api/status")
     def put_status():
+        if not logged_in():
+            return jsonify(error="请先登录后再修改打卡。"), 401
+        if not valid_csrf():
+            return jsonify(error="页面已过期，请刷新后重试。"), 403
         body = request.get_json(silent=True) or {}
         group, task_id, day, done = (body.get(key) for key in ("group", "id", "date", "done"))
         if group not in ("daily", "once") or not isinstance(task_id, str) or not valid_date(day) or type(done) is not bool:

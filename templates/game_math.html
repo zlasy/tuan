@@ -14,7 +14,7 @@
 <dialog id="win" aria-labelledby="win-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="win-title">全部正确！</h2><p>交叉算式小达人就是你</p><button id="again" class="chip action">再来一题</button><button id="close-win" class="dialog-close" aria-label="关闭庆祝弹窗">×</button></div></dialog>
 <script>
   const grid = document.querySelector('#puzzle'), progress = document.querySelector('#progress'), errorTip = document.querySelector('#puzzle-error'), win = document.querySelector('#win');
-  let data = {{ puzzle|tojson }}, inputs = new Map(), solved = false;
+  let data = {{ puzzle|tojson }}, inputs = new Map(), numbers = new Map(), solved = false;
 
   function render(puzzle){
     data = puzzle; solved = false; inputs.clear(); grid.replaceChildren();
@@ -22,7 +22,7 @@
     document.querySelector('#top-label').textContent = puzzle.top;
     document.querySelectorAll('.chip[data-top]').forEach(chip => chip.classList.toggle('active', Number(chip.dataset.top) === puzzle.top));
     const marks = new Map(puzzle.marks.map(m => [`${m.r},${m.c}`, m.text]));
-    const numbers = new Map(puzzle.numbers.map(n => [`${n.r},${n.c}`, n]));
+    numbers = new Map(puzzle.numbers.map(n => [`${n.r},${n.c}`, n]));
     for (let r = 0; r < puzzle.size; r++) for (let c = 0; c < puzzle.size; c++){
       const key = `${r},${c}`;
       if (marks.has(key)){ const cell = document.createElement('div'); cell.className = 'cell mark'; cell.textContent = marks.get(key); grid.append(cell); continue; }
@@ -33,7 +33,7 @@
           const input = document.createElement('input');
           input.className = 'cell editable'; input.type = 'text'; input.inputMode = 'numeric'; input.maxLength = 3;
           input.setAttribute('aria-label', `第${r + 1}行第${c + 1}列`);
-          input.addEventListener('input', () => { input.classList.remove('wrong'); input.value = input.value.replace(/\D/g, '').slice(0, 3); refresh(); });
+          input.addEventListener('input', () => { input.classList.remove('wrong', 'correct'); input.value = input.value.replace(/\D/g, '').slice(0, 3); refresh(); });
           grid.append(input); inputs.set(key, input);
         }
         continue;
@@ -43,7 +43,12 @@
     refresh();
   }
 
-  const valueOf = coords => { const input = inputs.get(`${coords[0]},${coords[1]}`); const n = input ? parseInt(input.value, 10) : NaN; return input && input.value !== '' && Number.isFinite(n) ? n : null; };
+  const valueOf = coords => {
+    const key = `${coords[0]},${coords[1]}`, item = numbers.get(key);
+    if (item.given) return item.answer;
+    const input = inputs.get(key), n = Number(input.value);
+    return Number.isInteger(n) && n >= 1 && n <= data.top ? n : null;
+  };
 
   function refresh(){
     let correct = 0;
@@ -58,11 +63,17 @@
 
   document.querySelector('#check').addEventListener('click', () => {
     if (solved) return;
+    inputs.forEach(input => input.classList.remove('wrong', 'correct'));
     for (const eq of data.equations){
       const [a, b, c] = eq.cells.map(valueOf);
       const ok = a !== null && b !== null && c !== null && (eq.op === '+' ? a + b === c : a - b === c);
       const filled = a !== null && b !== null && c !== null;
-      if (filled && !ok) eq.cells.forEach(coords => inputs.get(`${coords[0]},${coords[1]}`).classList.add('wrong'));
+      if (filled) eq.cells.forEach(coords => {
+        const input = inputs.get(`${coords[0]},${coords[1]}`);
+        if (!input) return;
+        if (!ok) { input.classList.remove('correct'); input.classList.add('wrong'); }
+        else if (!input.classList.contains('wrong')) input.classList.add('correct');
+      });
     }
   });
 
@@ -71,7 +82,7 @@
     for (const item of data.numbers){
       if (item.given) continue;
       const input = inputs.get(`${item.r},${item.c}`);
-      input.value = item.answer; input.disabled = true; input.classList.add('revealed');
+      input.value = item.answer; input.disabled = true; input.classList.remove('wrong', 'correct'); input.classList.add('revealed');
     }
     refresh();
   });

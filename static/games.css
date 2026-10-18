@@ -30,6 +30,7 @@
 .cell.given{background:#f6f0e4}
 .cell.editable{appearance:none;padding:0;border:1px solid #d9c7a4;background:#fffbf0;text-align:center;font:inherit;font-weight:750;color:#293449}
 .cell.editable:focus{outline:2px solid #f4a47c;outline-offset:1px}
+.cell.editable.correct{background:#e4f5e9;border-color:#73b986;color:#246b3c}
 .cell.editable.wrong{background:#ffe7e3;border-color:#ff8a7a;color:#c0392b}
 .cell.editable.revealed{background:#eef4ea;border-color:#cfe3cd;color:#5c8a5e}
 .cell.editable:disabled{cursor:default}

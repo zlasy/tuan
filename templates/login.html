@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>管理员登录 · 云泽打卡</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="app">
+  <header class="hero"><a href="{{ url_for('index') }}">← 返回打卡</a><h1>管理员登录</h1><p>登录后可勾选和修改打卡任务。</p></header>
+  {% if error %}<p class="login-error" role="alert">{{ error }}</p>{% endif %}
+  {% if configured %}<form class="card login-form" method="post" action="{{ url_for('login') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>账号<input name="username" autocomplete="username" required autofocus></label>
+    <label>密码<input name="password" type="password" autocomplete="current-password" required></label>
+    <button type="submit">登录</button>
+  </form>{% endif %}
+</main></body></html>

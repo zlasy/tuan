@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# 团团打卡 —— 停止服务（CentOS）
+# 云泽打卡 —— 停止服务（CentOS）
 #
 #   ./stop.sh        优雅停止（SIGTERM，最多等 10 秒）
 #   ./stop.sh -f     强制停止（直接 SIGKILL）

@@ -5,8 +5,8 @@
 所有数字都落在 1~top 之间（默认 50 以内加减法）。
 
 生成流程：先随机确定每道算式的运算符，再用带回溯的链式搜索
-为所有数字格赋值（保证每条算式都成立），最后按「每道算式至少
-露出一个数字」的策略挖空，得到可玩谜题。
+为所有数字格赋值（保证每条算式都成立），挖空后补足提示，保证
+所有空格都能由已知数字逐步推导，得到有且仅有一个解的谜题。
 """
 import random
 
@@ -144,6 +144,20 @@ def build_puzzle(top=50):
     for cell in values:
         if cell not in revealed and rng.random() < 0.2:
             revealed.add(cell)
+
+    # 两个已知数唯一确定第三个数；推导停滞时补一个提示，直到全部可解。
+    # 已有完整合法答案保证存在解，这条推导链保证不存在其他解。
+    known = revealed.copy()
+    while len(known) < len(values):
+        before = len(known)
+        for cells in equation_cells:
+            missing = set(cells) - known
+            if len(missing) == 1:
+                known.update(missing)
+        if len(known) == before:
+            cell = rng.choice(sorted(set(values) - known))
+            revealed.add(cell)
+            known.add(cell)
 
     numbers, marks, equations = [], [], []
     for index, (direction, row, col) in enumerate(ANCHORS):

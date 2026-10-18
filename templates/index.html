@@ -1,7 +1,11 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><meta name="description" content="团团的每日任务和本次学习任务打卡页面"><title>团团打卡</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><meta name="description" content="云泽的每日任务和本次学习任务打卡页面"><title>云泽打卡</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body><main class="app">
-  <header class="hero"><div class="eyebrow">✨ LITTLE STEPS, BIG GROWTH</div><h1>团团打卡</h1><p>每天进步一点点，认真完成今天的小目标。</p></header>
+  <header class="hero"><div class="eyebrow">✨ LITTLE STEPS, BIG GROWTH</div><h1>云泽打卡</h1><p>每天进步一点点，认真完成今天的小目标。</p></header>
+  <div class="auth-bar">
+    {% if logged_in %}<span>已登录，可修改打卡</span><form action="{{ url_for('logout') }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit">退出登录</button></form>
+    {% else %}<span>当前为只读模式，登录后可打卡</span><a id="open-login" href="{{ url_for('login') }}">管理员登录</a>{% endif %}
+  </div>
   <div class="tabs" role="tablist" aria-label="任务分类"><button class="tab" role="tab" id="tab-daily" aria-controls="daily" aria-selected="true">☀️ 每日任务</button><button class="tab" role="tab" id="tab-once" aria-controls="once" aria-selected="false">📚 不定期任务</button><button class="tab" role="tab" id="tab-games" aria-controls="games" aria-selected="false">🎮 小游戏</button></div>
   <section class="panel" id="daily" role="tabpanel" aria-labelledby="tab-daily">
     <div class="section-head"><h2>每日小目标</h2><div class="month-nav"><button id="previous-month" aria-label="上个月">‹</button><span id="month-title"></span><button id="next-month" aria-label="下个月">›</button></div></div>
@@ -9,13 +13,13 @@
     <p id="calendar-error" role="alert" hidden>月历状态读取失败，请切换月份重试。</p>
     <p class="hint">点击日期查看任务和打卡，全部完成为绿色，逾期未完成为红色。</p>
     <dialog id="daily-dialog" aria-labelledby="daily-date"><div class="section-head"><div><h2 id="daily-date"></h2><span class="progress" id="daily-progress"></span></div><button id="close-dialog" aria-label="关闭任务弹窗">×</button></div><p id="daily-error" role="alert" hidden>读取失败，请关闭后重试。</p>
-      {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
+      {% for task in daily %}<div class="card"><label class="task"><span class="icon {{ task.color }}">{{ task.icon }}</span><span class="task-copy"><span class="task-title">{{ task.title }}</span><span class="task-sub">{{ task.description }}</span></span><input class="check" type="checkbox" {% if not logged_in %}disabled{% endif %} data-group="daily" data-id="{{ task.id }}" data-date="{{ today }}" aria-label="完成{{ task.title }}"></label></div>{% endfor %}
     </dialog>
   </section>
   <section class="panel" id="once" role="tabpanel" aria-labelledby="tab-once" hidden><div class="section-head"><div><h2>不定期任务</h2><p>未完成优先，按学科逐项完成</p></div></div>
     <div id="assignment-list">{% for assignment in assignments %}
       {% for section in assignment.sections %}<article class="card subject"><div class="date-pill assignment-date">{{ assignment.date }} 布置</div><div class="subject-head"><span class="icon {{ section.color }}">{{ section.icon }}</span><div><h3>{{ section.title }}</h3><small>{{ section.subtitle }}</small></div></div>
-        {% for task in section.tasks %}<label class="task"><span class="task-copy"><span class="task-title">{{ task.title }}</span></span><input class="check" type="checkbox" data-group="once" data-id="{{ task.id }}" data-date="{{ assignment.date }}" aria-label="完成{{ task.title }}"></label>{% endfor %}
+        {% for task in section.tasks %}<label class="task"><span class="task-copy"><span class="task-title">{{ task.title }}</span></span><input class="check" type="checkbox" {% if not logged_in %}disabled{% endif %} data-group="once" data-id="{{ task.id }}" data-date="{{ assignment.date }}" aria-label="完成{{ task.title }}"></label>{% endfor %}
         {% if section.details %}<div class="details">{% if section.details_title %}<strong>{{ section.details_title }}</strong>{% endif %}<ol>{% for item in section.details %}<li>{{ item }}</li>{% endfor %}</ol></div>{% endif %}
         {% if section.note %}<div class="note">{{ section.note }}</div>{% endif %}
       </article>{% endfor %}
@@ -49,11 +53,43 @@
     </div>
   </section><div class="footer">一步一步，完成今天的成长 ✨</div>
 </main>
+<dialog id="login-dialog" aria-labelledby="login-title">
+  <div class="section-head"><h2 id="login-title">管理员登录</h2><button id="close-login" type="button" aria-label="关闭登录弹窗">×</button></div>
+  <p>登录后可勾选和修改打卡任务。</p>
+  <form id="login-form" class="login-form" action="{{ url_for('login') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>账号<input name="username" autocomplete="username" required></label>
+    <label>密码<input name="password" type="password" autocomplete="current-password" required></label>
+    <p id="login-error" class="login-error" role="alert" hidden></p>
+    <button id="login-submit" type="submit">登录</button>
+  </form>
+</dialog>
 <dialog id="celebration" aria-labelledby="reward-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="reward-title">任务全部完成！</h2><div class="reward-points">积分 <strong>+10</strong></div><p>每一份努力，都在闪闪发光</p><button id="close-celebration" aria-label="关闭庆祝弹窗">×</button></div></dialog>
 <script src="{{ url_for('static', filename='assignments.js') }}"></script>
 <script>
+  let canEdit={{ logged_in|tojson }};
+  const csrfToken={{ csrf_token|tojson }};
   const boxes=[...document.querySelectorAll('.check')], dailyBoxes=boxes.filter(b=>b.dataset.group==='daily');
   const dialog=document.querySelector('#daily-dialog'), today={{ today|tojson }};
+  const loginDialog=document.querySelector('#login-dialog'), loginError=document.querySelector('#login-error');
+  const openLogin=()=>{loginError.hidden=true;if(!loginDialog.open)loginDialog.showModal()};
+  document.querySelector('#open-login')?.addEventListener('click',event=>{event.preventDefault();openLogin()});
+  document.querySelector('#close-login').addEventListener('click',()=>loginDialog.close());
+  boxes.forEach(box=>{
+    const task=box.closest('.task');
+    if(!canEdit){task.tabIndex=0;task.setAttribute('role','button');task.setAttribute('aria-label','登录后可打卡')}
+    task.addEventListener('click',event=>{if(!canEdit){event.preventDefault();openLogin()}});
+    task.addEventListener('keydown',event=>{if(!canEdit&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openLogin()}});
+  });
+  document.querySelector('#login-form').addEventListener('submit',async event=>{
+    event.preventDefault();const button=document.querySelector('#login-submit');button.disabled=true;loginError.hidden=true;
+    try{
+      const response=await fetch(event.currentTarget.action,{method:'POST',headers:{Accept:'application/json'},body:new FormData(event.currentTarget)});
+      const result=await response.json();if(!response.ok)throw Error(result.error||'登录失败，请稍后重试');
+      window.location.reload();
+    }catch(error){loginError.textContent=error.message||'登录失败，请稍后重试';loginError.hidden=false}
+    finally{button.disabled=false}
+  });
   let month=new Date(Number(today.slice(0,4)),Number(today.slice(5,7))-1,1), loadVersion=0, calendarVersion=0;
   const update=()=>{document.querySelector('#daily-progress').textContent=`${dailyBoxes.filter(b=>b.checked).length} / ${dailyBoxes.length} 完成`};
   const savedDaily=new Map(), reward=document.querySelector('#celebration');
@@ -91,7 +127,7 @@
   async function openDay(date){
     const version=++loadVersion;document.querySelector('#daily-date').textContent=date;document.querySelector('#daily-error').hidden=true;
     dailyBoxes.forEach(box=>{box.dataset.date=date;box.checked=false;box.disabled=true});update();dialog.showModal();
-    try{const response=await fetch('/api/status?date='+date);if(!response.ok)throw Error();const status=await response.json();if(version!==loadVersion)return;savedDaily.set(date,{...status.daily});dailyBoxes.forEach(box=>{box.checked=!!status.daily[box.dataset.id];box.disabled=false});update()}
+    try{const response=await fetch('/api/status?date='+date);if(!response.ok)throw Error();const status=await response.json();if(version!==loadVersion)return;savedDaily.set(date,{...status.daily});dailyBoxes.forEach(box=>{box.checked=!!status.daily[box.dataset.id];box.disabled=!canEdit});update()}
     catch{if(version===loadVersion)document.querySelector('#daily-error').hidden=false}
   }
   document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());
@@ -99,7 +135,7 @@
   for(const [id,step] of [['previous-month',-1],['next-month',1]])document.querySelector('#'+id).addEventListener('click',()=>{month=new Date(month.getFullYear(),month.getMonth()+step,1);renderCalendar()});
   renderCalendar();
   fetch('/api/status?date='+today).then(r=>{if(!r.ok)throw Error();return r.json()}).then(status=>{boxes.filter(b=>b.dataset.group==='once').forEach(box=>{box.checked=!!status.once[`${box.dataset.date}:${box.dataset.id}`]});sortAssignments()}).catch(()=>{});
-  boxes.forEach(box=>box.addEventListener('change',async()=>{const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(!response.ok)throw Error('保存失败');if(box.dataset.group==='daily'){const status=savedDaily.get(date)||{};status[box.dataset.id]=done;savedDaily.set(date,status);renderCalendar();if(done)celebrate(date);}if(box.dataset.date===date)update()}catch{if(box.dataset.date===date){box.checked=!done;alert('保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=false;if(box.dataset.group==='once')sortAssignments()}}));
+  boxes.forEach(box=>box.addEventListener('change',async()=>{if(!canEdit){box.checked=!box.checked;return}const done=box.checked,date=box.dataset.date;box.disabled=true;try{const response=await fetch('/api/status',{method:'PUT',headers:{'Content-Type':'application/json','X-CSRF-Token':csrfToken},body:JSON.stringify({group:box.dataset.group,id:box.dataset.id,date,done})});if(response.status===401||response.status===403){canEdit=false;boxes.forEach(b=>b.disabled=true);throw Error('登录已失效或页面已过期，请刷新并重新登录')}if(!response.ok)throw Error('保存失败，请稍后重试');if(box.dataset.group==='daily'){const status=savedDaily.get(date)||{};status[box.dataset.id]=done;savedDaily.set(date,status);renderCalendar();if(done)celebrate(date);}if(box.dataset.date===date)update()}catch(error){if(box.dataset.date===date){box.checked=!done;alert(error.message||'保存失败，请稍后重试')}}finally{if(box.dataset.date===date)box.disabled=!canEdit;if(box.dataset.group==='once')sortAssignments()}}));
   const tabs=[...document.querySelectorAll('.tab')];tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(next);tabs[next].focus()}})});
   function select(index){tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;document.querySelector('#'+tab.getAttribute('aria-controls')).hidden=i!==index})}
 </script></body></html>

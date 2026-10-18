@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# 团团打卡 —— 重启服务（CentOS）
+# 云泽打卡 —— 重启服务（CentOS）
 #
 #   ./restart.sh        停止旧进程 → 启动 → 等就绪
 #   ./restart.sh -f     停止阶段强制 SIGKILL

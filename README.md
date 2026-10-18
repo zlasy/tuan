@@ -1,4 +1,4 @@
-# 团团打卡（Flask）
+# 云泽打卡（Flask）
 
 ## 本地运行
 
@@ -15,16 +15,37 @@ uv run python app.py
 
 打卡数据保存在 `instance/checkins.sqlite3`，按每日日期或不定期任务的布置日期区分。服务使用北京时间计算“今天”。
 
+## 管理员登录
+
+未登录时可查看所有任务与打卡状态，勾选框置灰；登录后才可修改每日任务和不定期任务，退出后恢复只读。登录有效期为 8 小时。
+
+项目从根目录 `.env` 读取管理员配置，启动前无需手动 `export`。当前本地 `.env` 已生成账号、随机密码和会话密钥；账号默认 `admin`，密码请在 `.env` 中查看或修改。
+
+新环境首次部署：
+
+```bash
+cp .env.example .env
+# 编辑 .env，填写 ADMIN_USERNAME、ADMIN_PASSWORD、SECRET_KEY
+uv sync
+./restart.sh
+```
+
+可用 `python3 -c 'import secrets; print(secrets.token_hex(32))'` 生成 `SECRET_KEY`，生成后固定保存供各 worker 和后续重启共用。配置优先级为：应用显式配置 > 系统环境变量 > `.env`。修改 `.env` 后需重启服务；缺少任一登录配置时，打卡保持只读，登录页提示尚未配置。
+
+`.env` 已加入 Git 忽略规则，仅提交不含密码和密钥的 `.env.example`。
+首页点击「管理员登录」输入账号密码即可；密码不保存在代码或浏览器存储中。后端同时校验登录状态与 CSRF 令牌，拒绝未登录或无效页面提交的修改。
+
 ## 小游戏
 
 首页第三个 tab「🎮 小游戏」是游戏列表，后续会陆续添加。当前包含：
 
-- **数学思维 · 交叉算式**（`/games/math`）：仿照纸质《20以内加减法交叉思维练习》，在 13×13 网格中填数使横、纵共 18 道算式成立，支持 50 以内 / 100 以内切换。谜题由 `mathpuzzle.py` 实时生成（链式回溯求解，保证每题有解、每道算式至少有一个提示数字），前端本地判题，`/api/games/math/puzzle?top=50` 可直接取新题。
+- **数学思维 · 交叉算式**（`/games/math`）：仿照纸质《20以内加减法交叉思维练习》，在 13×13 网格中填数使横、纵共 18 道算式成立，支持 50 以内 / 100 以内切换。谜题由 `mathpuzzle.py` 实时生成（链式回溯求解，补足提示使所有空格可逐步推导，保证每题有且仅有一个解），前端本地判题，`/api/games/math/puzzle?top=50` 可直接取新题。
 - **英语单词 · 闪卡**（`/games/words`）：369 个单词及短语、40 个常见句式，按 20 个主题分类，每轮随机抽 10 张。支持翻面、英文朗读和未掌握卡片复习。词库位于 `wordcards.py`，面向一、二年级，以 Power Up 1–2、RAZ aa–J、牛津树 1–5 级为选词范围参考；这是精选练习词库，例句自编，不是各教材逐册完整词表。参考 [Power Up 2 课程大纲](https://www.cambridge.org/us/files/3815/6768/5029/Power_Up_Power_Up_L2_Scope_And_Sequence_9781108413763_Scope_and_Sequence.pdf)、[Reading A-Z 阅读技能表](https://www.readinga-z.com/helpful-tools/books-by-skills-chart/)、[牛津树级别说明](https://home.oxfordowl.co.uk/reading/reading-schemes-oxford-levels/oxford-reading-tree-levels/)。
 
 运行测试：
 
 ```bash
+uv run python -m unittest discover -v
 uv run python -m unittest discover -s tests -v
 ```
 
