@@ -32,6 +32,14 @@ def connection():
     return db
 
 
+def word_connection():
+    db = connection()
+    db.execute("CREATE TABLE IF NOT EXISTS word_mistakes (word TEXT PRIMARY KEY, mistakes INTEGER NOT NULL, last_wrong TEXT NOT NULL)")
+    db.execute("CREATE TABLE IF NOT EXISTS word_learning (word TEXT PRIMARY KEY, weight REAL NOT NULL)")
+    db.execute("CREATE TABLE IF NOT EXISTS word_round_answers (round_id TEXT NOT NULL, word TEXT NOT NULL, base_weight REAL NOT NULL, wrong INTEGER NOT NULL, attempt INTEGER NOT NULL, PRIMARY KEY (round_id, word))")
+    return db
+
+
 def valid_date(value):
     try:
         return date.fromisoformat(value).isoformat() == value
@@ -183,13 +191,67 @@ def create_app(config=None):
         top = 100 if request.args.get("top") == "100" else 50
         return jsonify(mathpuzzle.build_puzzle(top))
 
+    def weighted_word_deck():
+        with word_connection() as db:
+            weights = dict(db.execute("SELECT word, weight FROM word_learning"))
+        return wordcards.build_deck(request.args.get("category"), weights=weights)
+
     @app.get("/games/words")
     def game_words():
-        return render_template("game_words.html", deck=wordcards.build_deck(request.args.get("category")), categories=wordcards.CATEGORIES)
+        return render_template("game_words.html", deck=weighted_word_deck(), categories=wordcards.CATEGORIES)
 
     @app.get("/api/games/words/deck")
     def words_deck_api():
-        return jsonify(wordcards.build_deck(request.args.get("category")))
+        return jsonify(weighted_word_deck())
+
+    @app.post("/api/games/words/answer")
+    def words_answer_api():
+        body = request.get_json(silent=True)
+        if not isinstance(body, dict):
+            return jsonify(error="无效的答题数据"), 400
+        word, correct, round_id, attempt = (body.get(key) for key in ("word", "correct", "round_id", "attempt"))
+        if (not isinstance(word, str) or not any(card["word"] == word for rows in wordcards.WORDS.values() for card in rows)
+                or type(correct) is not bool or not isinstance(round_id, str) or not 1 <= len(round_id) <= 64
+                or type(attempt) is not int or not 1 <= attempt <= 1000000):
+            return jsonify(error="无效的答题数据"), 400
+        with word_connection() as db:
+            # Serialize read/update so concurrent submissions cannot count twice.
+            db.execute("BEGIN IMMEDIATE")
+            saved = db.execute("SELECT weight FROM word_learning WHERE word = ?", (word,)).fetchone()
+            weight = saved[0] if saved else 3
+            previous = db.execute("SELECT base_weight, wrong, attempt FROM word_round_answers WHERE round_id = ? AND word = ?", (round_id, word)).fetchone()
+            if previous and (attempt < previous[2] or (attempt == previous[2] and (correct or previous[1]))):
+                return jsonify(weight=weight)
+            base = previous[0] if previous else weight
+            wrong = not correct or bool(previous and previous[1])
+            if not previous or (wrong and not previous[1]):
+                weight = min(12, base * 2) if wrong else max(.5, base / 2)
+                db.execute("INSERT INTO word_learning VALUES (?, ?) ON CONFLICT(word) DO UPDATE SET weight = excluded.weight", (word, weight))
+            db.execute("INSERT INTO word_round_answers VALUES (?, ?, ?, ?, ?) ON CONFLICT(round_id, word) DO UPDATE SET wrong = excluded.wrong, attempt = excluded.attempt", (round_id, word, base, int(wrong), attempt))
+            if not correct:
+                timestamp = datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()
+                db.execute("INSERT INTO word_mistakes VALUES (?, 1, ?) ON CONFLICT(word) DO UPDATE SET mistakes = mistakes + 1, last_wrong = excluded.last_wrong", (word, timestamp))
+        return jsonify(weight=weight)
+
+    @app.route("/api/games/words/mistakes", methods=["GET", "POST", "DELETE"])
+    def words_mistakes_api():
+        cards = {card["word"]: card for rows in wordcards.WORDS.values() for card in rows}
+        if request.method != "GET":
+            body = request.get_json(silent=True)
+            word = body.get("word") if isinstance(body, dict) else None
+            if not isinstance(word, str) or word not in cards:
+                return jsonify(error="无效的英语卡片"), 400
+        with word_connection() as db:
+            if request.method == "POST":
+                timestamp = datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()
+                db.execute("INSERT INTO word_mistakes VALUES (?, 1, ?) ON CONFLICT(word) DO UPDATE SET mistakes = mistakes + 1, last_wrong = excluded.last_wrong", (word, timestamp))
+            elif request.method == "DELETE":
+                db.execute("DELETE FROM word_mistakes WHERE word = ?", (word,))
+            else:
+                rows = db.execute("SELECT word, mistakes, last_wrong FROM word_mistakes ORDER BY last_wrong DESC").fetchall()
+                return jsonify(cards=[{**cards[word], "mistakes": mistakes, "last_wrong": last_wrong}
+                                      for word, mistakes, last_wrong in rows if word in cards])
+        return jsonify(ok=True)
 
     @app.get("/games/reading")
     def game_reading():

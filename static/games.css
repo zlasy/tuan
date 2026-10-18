@@ -81,3 +81,12 @@
 .reading-words{display:flex;flex-wrap:wrap;gap:10px 8px}
 .reading-words span{padding:8px 12px;background:#f1f8ee;border-radius:12px;font-size:26px;font-weight:650;line-height:1.5;white-space:nowrap}
 .writing-card h3{color:#a6532d}.writing-card .reading-words span{background:#fff3e9}
+
+/* 闪卡错题本 */
+.mistake-book{max-width:620px;margin:0 auto 20px}
+.mistake-book h2{font-size:22px}.mistake-book p{color:#6b6353;line-height:1.6}
+.mistake-book article{padding:16px;margin-top:12px;border:1px solid #e9e0d1;border-radius:16px;background:#fff;overflow-wrap:anywhere}
+.mistake-book h3{margin:0;font-size:20px}.mistake-book article p{margin:8px 0}
+.mistake-book small{display:block;color:#6b6353;margin-bottom:12px}
+#save-status{text-align:center;color:#487744;font-size:14px}
+.chip:disabled{opacity:.5;cursor:wait}

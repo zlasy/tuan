@@ -4,8 +4,16 @@
   <header class="hero"><a class="back" href="/">← 返回打卡</a><div class="eyebrow">✨ WORD FLASHCARDS</div><h1>🔤 英语单词 · 闪卡</h1><p>一、二年级词汇与常见句式。先看英文猜意思，点击卡片翻面对答案。</p></header>
   <div class="toolbar">
     <div class="chip-row word-categories" role="group" aria-label="词汇与句式分类">{% for key, label in categories %}<button class="chip" data-category="{{ key }}">{{ label }}</button>{% endfor %}</div>
-    <div class="chip-row"><button id="new-deck" class="chip action">🔄 换一批</button></div>
+    <div class="chip-row"><button id="open-mistakes" class="chip action">📒 错题本</button><button id="new-deck" class="chip action">🔄 换一批</button></div>
   </div>
+  <section id="mistake-book" class="mistake-book" aria-labelledby="mistake-title" hidden>
+    <h2 id="mistake-title">📒 错题本</h2>
+    <p>点击「再想想」自动收录，认识后仍会保留，掌握了可手动移出。</p>
+    <div class="chip-row"><button id="review-mistakes" class="chip action">复习错题</button><button id="close-mistakes" class="chip">返回闪卡</button></div>
+    <p id="mistake-empty" hidden>还没有错题，继续学习吧 ✨</p>
+    <div id="mistake-list"></div>
+  </section>
+  <p id="save-status" role="status"></p>
   <p class="progress" id="progress"></p>
   <p class="error" id="deck-error" role="alert" hidden>卡片加载失败，请稍后重试。</p>
   <div id="scene" class="flash-scene">
@@ -20,7 +28,7 @@
 <dialog id="win" aria-labelledby="win-title"><div class="reward-particles" aria-hidden="true"></div><div class="reward-card"><span class="reward-star" aria-hidden="true">🌟</span><h2 id="win-title">全部认识！</h2><p id="win-detail">单词小达人就是你</p><button id="restart" class="chip action">再来一组</button><button id="close-win" class="dialog-close" aria-label="关闭庆祝弹窗">×</button></div></dialog>
 <script>
   const card = document.querySelector('#flash-card'), progress = document.querySelector('#progress'), errorTip = document.querySelector('#deck-error'), win = document.querySelector('#win');
-  let count = 0, queue = [], index = 0, known = 0;
+  let count = 0, queue = [], index = 0, known = 0, reviewing = false, busy = false, roundId;
 
   function speak(text){
     try{
@@ -33,6 +41,7 @@
   }
 
   function show(){
+    if (!queue.length) return;
     const item = queue[index];
     card.classList.remove('flipped');
     card.classList.toggle('sentence', item.card.kind === 'phrase');
@@ -44,7 +53,7 @@
   }
 
   function refresh(){
-    progress.textContent = queue.length ? `还剩 ${queue.length} 张 · 已认识 ${known} 张` : '全部认识啦！';
+    progress.textContent = (reviewing ? '错题复习 · ' : '') + (queue.length ? `还剩 ${queue.length} 张 · 已认识 ${known} 张` : '全部认识啦！');
   }
 
   function next(){
@@ -55,6 +64,7 @@
 
   function winWin(){
     refresh();
+    document.querySelector('#scene').hidden = true;
     document.querySelector('#win-detail').textContent = `本轮认识 ${known} 张英语卡片，太棒啦`;
     const particles = win.querySelector('.reward-particles'); particles.replaceChildren();
     for (let i = 0; i < 48; i++){
@@ -65,36 +75,120 @@
     win.showModal();
   }
 
-  const flip = () => { card.classList.toggle('flipped'); if (card.classList.contains('flipped')) speak(queue[index].card.word); };
+  const flip = () => { if (!queue.length || busy) return; card.classList.toggle('flipped'); if (card.classList.contains('flipped')) speak(queue[index].card.word); };
   card.addEventListener('click', flip);
   card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' '){ event.preventDefault(); flip(); } });
-  document.querySelector('#speak').addEventListener('click', event => { event.stopPropagation(); speak(queue[index].card.word); });
+  document.querySelector('#speak').addEventListener('click', event => { event.stopPropagation(); if (queue.length) speak(queue[index].card.word); });
 
-  document.querySelector('#know').addEventListener('click', () => {
+  document.querySelector('#know').addEventListener('click', () => run(async () => {
+    if (!queue.length) return;
+    await saveAnswer(true);
     queue.splice(index, 1); known++;
     if (!queue.length) winWin(); else next();
-  });
-  document.querySelector('#again').addEventListener('click', () => {
+  }));
+  document.querySelector('#again').addEventListener('click', () => run(async () => {
+    if (!queue.length) return;
+    await saveAnswer(false);
+    document.querySelector('#save-status').textContent = '已记入错题本';
     const item = queue.splice(index, 1)[0];
     queue.splice(Math.min(index + 3, queue.length), 0, item);
     next();
-  });
+  }));
+
+  async function saveAnswer(correct){
+    const item = queue[index];
+    const response = await fetch('/api/games/words/answer', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({word: item.card.word, correct, round_id: roundId, attempt: item.attempt + 1})
+    });
+    if (!response.ok) throw Error();
+    await response.json();
+    item.attempt++;
+  }
+
+  async function mistakeRequest(method = 'GET', word){
+    const response = await fetch('/api/games/words/mistakes', {
+      method, headers: {'Content-Type': 'application/json'},
+      ...(word ? {body: JSON.stringify({word})} : {})
+    });
+    if (!response.ok) throw Error();
+    return response.json();
+  }
+
+  async function run(action){
+    if (busy) return;
+    busy = true;
+    const buttons = [...document.querySelectorAll('main button')];
+    buttons.forEach(button => button.disabled = true);
+    errorTip.hidden = true;
+    document.querySelector('#save-status').textContent = '';
+    try{ await action(); }
+    catch{ errorTip.textContent = '操作失败，请重试；当前卡片和错题记录未在页面中移除。'; errorTip.hidden = false; }
+    finally{ busy = false; buttons.forEach(button => button.disabled = false); }
+  }
+
+  function showBook(visible){
+    document.querySelector('#mistake-book').hidden = !visible;
+    document.querySelector('#scene').hidden = visible || !queue.length;
+    progress.hidden = visible;
+  }
+
+  async function openBook(){
+    const {cards} = await mistakeRequest();
+    const list = document.querySelector('#mistake-list');
+    list.replaceChildren();
+    document.querySelector('#mistake-empty').hidden = cards.length > 0;
+    for (const item of cards){
+      const row = document.createElement('article');
+      for (const [tag, text] of [
+        ['h3', `${item.emoji} ${item.word}`],
+        ['p', item.cn], ['p', `${item.example} — ${item.example_cn}`],
+        ['small', `${item.kind === 'phrase' ? '句型' : '单词'} · 答错 ${item.mistakes} 次 · 最近 ${new Date(item.last_wrong).toLocaleDateString('zh-CN')}`]
+      ]){
+        const element = document.createElement(tag); element.textContent = text; row.append(element);
+      }
+      const remove = document.createElement('button');
+      remove.className = 'chip'; remove.textContent = '已掌握，移出';
+      remove.setAttribute('aria-label', `已掌握 ${item.word}，移出错题本`);
+      remove.addEventListener('click', () => run(async () => {
+        await mistakeRequest('DELETE', item.word);
+        await openBook();
+      }));
+      row.append(remove); list.append(row);
+    }
+    showBook(true);
+  }
+
+  document.querySelector('#open-mistakes').addEventListener('click', () => run(openBook));
+  document.querySelector('#close-mistakes').addEventListener('click', () => showBook(false));
+  async function reviewMistakes(){
+    const {cards} = await mistakeRequest();
+    if (!cards.length){ await openBook(); return; }
+    start({category: 'mistakes', count: cards.length, cards});
+  }
+  document.querySelector('#review-mistakes').addEventListener('click', () => run(reviewMistakes));
 
   function start(deck){
     win.close(); errorTip.hidden = true;
+    reviewing = deck.category === 'mistakes';
+    document.querySelector('.footer').textContent = reviewing ? '复习错题本全部卡片 · 掌握后可在错题本手动移出 ✨' : '滑动标签选择主题 · 每轮 10 张，没记住的会再出现 ✨';
+    showBook(false);
+    document.querySelector('#scene').hidden = false;
     count = deck.count; known = 0; index = 0;
-    queue = deck.cards.map(card => ({card}));
+    roundId = Array.from(crypto.getRandomValues(new Uint32Array(4)), n => n.toString(16).padStart(8, '0')).join('');
+    queue = deck.cards.map(card => ({card, attempt: 0}));
     document.querySelectorAll('.chip[data-category]').forEach(chip => chip.classList.toggle('active', chip.dataset.category === deck.category));
     show();
   }
 
   async function loadDeck(category){
-    errorTip.hidden = true; win.close();
-    try{
+    return run(async () => {
+      win.close();
+      if (category === 'mistakes'){ await reviewMistakes(); return; }
       const response = await fetch('/api/games/words/deck?category=' + encodeURIComponent(category || 'all'));
       if (!response.ok) throw Error();
       start(await response.json());
-    }catch{ errorTip.hidden = false; }
+    });
   }
 
   document.querySelectorAll('.chip[data-category]').forEach(chip => chip.addEventListener('click', () => loadDeck(chip.dataset.category)));
@@ -103,7 +197,7 @@
   document.querySelector('#close-win').addEventListener('click', () => win.close());
   win.addEventListener('click', event => { if (event.target === win) win.close(); });
 
-  const currentCategory = () => document.querySelector('.chip[data-category].active')?.dataset.category || 'all';
+  const currentCategory = () => reviewing ? 'mistakes' : document.querySelector('.chip[data-category].active')?.dataset.category || 'all';
 
   start({{ deck|tojson }});
 </script></body></html>

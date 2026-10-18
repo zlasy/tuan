@@ -495,9 +495,15 @@ WORDS = {
 }
 
 
-def build_deck(category=None):
+def build_deck(category=None, weights=None):
     """抽一轮闪卡：从指定主题（缺省为全部）随机抽 DECK_SIZE 张。"""
     key = category if category in WORDS else "all"
     pool = [card for cards in WORDS.values() for card in cards] if key == "all" else WORDS[key]
-    cards = random.sample(pool, min(DECK_SIZE, len(pool)))
+    pool = list(pool)
+    weights = weights or {}
+    cards = []
+    for _ in range(min(DECK_SIZE, len(pool))):
+        card = random.choices(pool, weights=[weights.get(item["word"], 3) for item in pool])[0]
+        cards.append(card)
+        pool.remove(card)
     return {"category": key, "count": len(cards), "cards": cards}
