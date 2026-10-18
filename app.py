@@ -262,6 +262,12 @@ def create_app(config=None):
     def game_speech():
         return render_template("game_speech.html")
 
+    @app.get("/games/lighthouse")
+    def game_lighthouse():
+        books = json.loads((BASE / "lighthouse_books.json").read_text(encoding="utf-8"))
+        vocabulary = json.loads((BASE / "lighthouse_vocab.json").read_text(encoding="utf-8"))
+        return render_template("game_lighthouse.html", books=books, vocabulary=vocabulary)
+
     return app
 
 

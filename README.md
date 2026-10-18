@@ -42,11 +42,18 @@ uv sync
 - **数学思维 · 交叉算式**（`/games/math`）：仿照纸质《20以内加减法交叉思维练习》，在 13×13 网格中填数使横、纵共 18 道算式成立，支持 50 以内 / 100 以内切换。谜题由 `mathpuzzle.py` 实时生成（链式回溯求解，补足提示使所有空格可逐步推导，保证每题有且仅有一个解），前端本地判题，`/api/games/math/puzzle?top=50` 可直接取新题。
 - **英语单词 · 闪卡**（`/games/words`）：369 个单词及短语、40 个常见句式，按 20 个主题分类，每轮随机抽 10 张。支持翻面、英文朗读和未掌握卡片复习。词库位于 `wordcards.py`，面向一、二年级，以 Power Up 1–2、RAZ aa–J、牛津树 1–5 级为选词范围参考；这是精选练习词库，例句自编，不是各教材逐册完整词表。参考 [Power Up 2 课程大纲](https://www.cambridge.org/us/files/3815/6768/5029/Power_Up_Power_Up_L2_Scope_And_Sequence_9781108413763_Scope_and_Sequence.pdf)、[Reading A-Z 阅读技能表](https://www.readinga-z.com/helpful-tools/books-by-skills-chart/)、[牛津树级别说明](https://home.oxfordowl.co.uk/reading/reading-schemes-oxford-levels/oxford-reading-tree-levels/)。
 
+- **小灯塔分级阅读**（`/games/lighthouse`）：第 5 个游戏，面向 6–8 岁，手机竖屏优先。蓝海 / 绿野 / 金山三级各 13 本原创试读故事（共 39 本、234 页），提供设备英文范读、逐词发音与中文提示、收藏、自动续读、重读、完成度一星与灯塔点亮、里程碑徽章、本周日历、同设备共读及家长本地周报。阅读设置支持语速、字号和高对比度。
+
+小灯塔本版按确认范围暂不提供录音：翻完全书并合书获得 1 星，不评判发音，不模拟录音得分；2–3 星留待录音功能接入。每本首次读完点亮一格，重读保留星级，不重复点亮。亲子邀请指邀请身边家人共用当前设备，不发送消息、不涉及账号或联网入座。进度与收藏仅保存在当前浏览器的 `localStorage`，清理站点数据会丢失，不与打卡数据库同步。
+
+内容位于 `lighthouse_books.json`，词义位于 `lighthouse_vocab.json`；均为试读素材，尚未经教学分级审定，画面使用场景图标辅助。范读使用浏览器 SpeechSynthesis 的英文声音（优先设备本地声音），没有可用声音时显示提示并保留阅读。周报在家长小窗按北京时间自然周汇总，不向外发送；收藏 Top 3 基于当前收藏及该周读完次数。
+
 运行测试：
 
 ```bash
 uv run python -m unittest discover -v
 uv run python -m unittest discover -s tests -v
+node --test test_lighthouse.cjs tests/*.cjs
 ```
 
 原先发布的静态站点保留在 `dist/`，不会连接此 Flask 服务或共用 SQLite 状态。要让公开网址使用服务端打卡，需部署 Flask 到支持 Python 服务及持久磁盘的环境。

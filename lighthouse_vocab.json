@@ -1,0 +1,1730 @@
+{
+  "cat": {
+    "meaning": "猫",
+    "icon": "🐱"
+  },
+  "bird": {
+    "meaning": "鸟",
+    "icon": "🐦"
+  },
+  "fish": {
+    "meaning": "鱼",
+    "icon": "🐟"
+  },
+  "duck": {
+    "meaning": "鸭子",
+    "icon": "🦆"
+  },
+  "bear": {
+    "meaning": "熊",
+    "icon": "🐻"
+  },
+  "snail": {
+    "meaning": "蜗牛",
+    "icon": "🐌"
+  },
+  "apple": {
+    "meaning": "苹果",
+    "icon": "🍎"
+  },
+  "bread": {
+    "meaning": "面包",
+    "icon": "🍞"
+  },
+  "water": {
+    "meaning": "水",
+    "icon": "💧"
+  },
+  "red": {
+    "meaning": "红色",
+    "icon": "🟥"
+  },
+  "yellow": {
+    "meaning": "黄色",
+    "icon": "🟨"
+  },
+  "blue": {
+    "meaning": "蓝色",
+    "icon": "🟦"
+  },
+  "green": {
+    "meaning": "绿色",
+    "icon": "🟩"
+  },
+  "one": {
+    "meaning": "一",
+    "icon": "1️⃣"
+  },
+  "two": {
+    "meaning": "二",
+    "icon": "2️⃣"
+  },
+  "three": {
+    "meaning": "三",
+    "icon": "3️⃣"
+  },
+  "four": {
+    "meaning": "四",
+    "icon": "4️⃣"
+  },
+  "head": {
+    "meaning": "头",
+    "icon": "🧑"
+  },
+  "face": {
+    "meaning": "脸",
+    "icon": "😊"
+  },
+  "foot": {
+    "meaning": "脚",
+    "icon": "🦶"
+  },
+  "book": {
+    "meaning": "书",
+    "icon": "📖"
+  },
+  "bag": {
+    "meaning": "书包",
+    "icon": "🎒"
+  },
+  "pen": {
+    "meaning": "钢笔",
+    "icon": "🖊️"
+  },
+  "chair": {
+    "meaning": "椅子",
+    "icon": "🪑"
+  },
+  "school": {
+    "meaning": "学校",
+    "icon": "🏫"
+  },
+  "desk": {
+    "meaning": "课桌；书桌",
+    "icon": "🪑"
+  },
+  "paper": {
+    "meaning": "纸",
+    "icon": "📄"
+  },
+  "family": {
+    "meaning": "家庭",
+    "icon": "👨‍👩‍👧"
+  },
+  "brother": {
+    "meaning": "哥哥；弟弟",
+    "icon": "👦"
+  },
+  "sister": {
+    "meaning": "姐姐；妹妹",
+    "icon": "👧"
+  },
+  "grandpa": {
+    "meaning": "爷爷；外公",
+    "icon": "👴"
+  },
+  "grandma": {
+    "meaning": "奶奶；外婆",
+    "icon": "👵"
+  },
+  "friend": {
+    "meaning": "朋友",
+    "icon": "🧑‍🤝‍🧑"
+  },
+  "mum": {
+    "meaning": "妈妈（英式称呼）",
+    "icon": "👩"
+  },
+  "dad": {
+    "meaning": "爸爸",
+    "icon": "👨"
+  },
+  "hat": {
+    "meaning": "帽子",
+    "icon": "👒"
+  },
+  "boots": {
+    "meaning": "靴子",
+    "icon": "🥾"
+  },
+  "house": {
+    "meaning": "房子",
+    "icon": "🏠"
+  },
+  "room": {
+    "meaning": "房间",
+    "icon": "🚪"
+  },
+  "bedroom": {
+    "meaning": "卧室",
+    "icon": "🛏️"
+  },
+  "garden": {
+    "meaning": "花园",
+    "icon": "🌷"
+  },
+  "door": {
+    "meaning": "门",
+    "icon": "🚪"
+  },
+  "window": {
+    "meaning": "窗户",
+    "icon": "🪟"
+  },
+  "table": {
+    "meaning": "桌子",
+    "icon": "🍽️"
+  },
+  "bed": {
+    "meaning": "床",
+    "icon": "🛏️"
+  },
+  "cup": {
+    "meaning": "杯子",
+    "icon": "☕"
+  },
+  "plate": {
+    "meaning": "盘子",
+    "icon": "🍽️"
+  },
+  "ball": {
+    "meaning": "球",
+    "icon": "⚽"
+  },
+  "game": {
+    "meaning": "游戏",
+    "icon": "🎮"
+  },
+  "run": {
+    "meaning": "跑",
+    "icon": "🏃"
+  },
+  "walk": {
+    "meaning": "走",
+    "icon": "🚶"
+  },
+  "swim": {
+    "meaning": "游泳",
+    "icon": "🏊"
+  },
+  "ride": {
+    "meaning": "骑",
+    "icon": "🚴"
+  },
+  "read": {
+    "meaning": "阅读",
+    "icon": "📖"
+  },
+  "write": {
+    "meaning": "写",
+    "icon": "✍️"
+  },
+  "draw": {
+    "meaning": "画",
+    "icon": "🎨"
+  },
+  "listen": {
+    "meaning": "听",
+    "icon": "👂"
+  },
+  "eat": {
+    "meaning": "吃",
+    "icon": "🍽️"
+  },
+  "sleep": {
+    "meaning": "睡觉",
+    "icon": "😴"
+  },
+  "wash": {
+    "meaning": "洗",
+    "icon": "🧼"
+  },
+  "park": {
+    "meaning": "公园",
+    "icon": "🏞️"
+  },
+  "shop": {
+    "meaning": "商店",
+    "icon": "🏪"
+  },
+  "library": {
+    "meaning": "图书馆",
+    "icon": "📚"
+  },
+  "bus": {
+    "meaning": "公共汽车",
+    "icon": "🚌"
+  },
+  "boat": {
+    "meaning": "小船",
+    "icon": "⛵"
+  },
+  "tree": {
+    "meaning": "树",
+    "icon": "🌳"
+  },
+  "leaf": {
+    "meaning": "叶子",
+    "icon": "🍃"
+  },
+  "flower": {
+    "meaning": "花",
+    "icon": "🌸"
+  },
+  "grass": {
+    "meaning": "草",
+    "icon": "🌱"
+  },
+  "seed": {
+    "meaning": "种子",
+    "icon": "🌱"
+  },
+  "plant": {
+    "meaning": "植物",
+    "icon": "🪴"
+  },
+  "pond": {
+    "meaning": "池塘",
+    "icon": "🐸"
+  },
+  "sea": {
+    "meaning": "海",
+    "icon": "🌊"
+  },
+  "rock": {
+    "meaning": "岩石",
+    "icon": "🪨"
+  },
+  "nest": {
+    "meaning": "鸟巢",
+    "icon": "🪺"
+  },
+  "sun": {
+    "meaning": "太阳",
+    "icon": "☀️"
+  },
+  "moon": {
+    "meaning": "月亮",
+    "icon": "🌙"
+  },
+  "star": {
+    "meaning": "星星",
+    "icon": "⭐"
+  },
+  "cloud": {
+    "meaning": "云",
+    "icon": "☁️"
+  },
+  "rain": {
+    "meaning": "雨",
+    "icon": "🌧️"
+  },
+  "wind": {
+    "meaning": "风",
+    "icon": "🌬️"
+  },
+  "windy": {
+    "meaning": "有风的",
+    "icon": "🍃"
+  },
+  "sad": {
+    "meaning": "难过的",
+    "icon": "😢"
+  },
+  "big": {
+    "meaning": "大的",
+    "icon": "🐘"
+  },
+  "small": {
+    "meaning": "小的",
+    "icon": "🐜"
+  },
+  "tall": {
+    "meaning": "高的",
+    "icon": "🦒"
+  },
+  "clean": {
+    "meaning": "干净的",
+    "icon": "✨"
+  },
+  "light": {
+    "meaning": "轻的",
+    "icon": "🪶"
+  },
+  "in": {
+    "meaning": "在……里面",
+    "icon": "📦"
+  },
+  "on": {
+    "meaning": "在……上面",
+    "icon": "📚"
+  },
+  "under": {
+    "meaning": "在……下面",
+    "icon": "🐱"
+  },
+  "behind": {
+    "meaning": "在……后面",
+    "icon": "🌳"
+  },
+  "between": {
+    "meaning": "在……之间",
+    "icon": "🌳"
+  },
+  "above": {
+    "meaning": "在……上方",
+    "icon": "🕊️"
+  },
+  "near": {
+    "meaning": "在……附近",
+    "icon": "🏫"
+  },
+  "outside": {
+    "meaning": "在外面",
+    "icon": "🌳"
+  },
+  "morning": {
+    "meaning": "早上",
+    "icon": "🌅"
+  },
+  "evening": {
+    "meaning": "傍晚；晚上",
+    "icon": "🌆"
+  },
+  "night": {
+    "meaning": "夜晚",
+    "icon": "🌙"
+  },
+  "today": {
+    "meaning": "今天",
+    "icon": "📅"
+  },
+  "tomorrow": {
+    "meaning": "明天",
+    "icon": "📅"
+  },
+  "monday": {
+    "meaning": "星期一",
+    "icon": "📅"
+  },
+  "breakfast": {
+    "meaning": "早饭",
+    "icon": "🥣"
+  },
+  "lunch": {
+    "meaning": "午饭",
+    "icon": "🍱"
+  },
+  "dinner": {
+    "meaning": "晚饭",
+    "icon": "🍽️"
+  },
+  "the": {
+    "meaning": "这／那（定冠词）",
+    "icon": "📖"
+  },
+  "a": {
+    "meaning": "一个（不定冠词）",
+    "icon": "🍎"
+  },
+  "and": {
+    "meaning": "和；并且",
+    "icon": "🤝"
+  },
+  "but": {
+    "meaning": "但是",
+    "icon": "💬"
+  },
+  "he": {
+    "meaning": "他",
+    "icon": "👦"
+  },
+  "she": {
+    "meaning": "她",
+    "icon": "👧"
+  },
+  "they": {
+    "meaning": "他们；她们；它们",
+    "icon": "👪"
+  },
+  "we": {
+    "meaning": "我们",
+    "icon": "🤝"
+  },
+  "my": {
+    "meaning": "我的",
+    "icon": "🎒"
+  },
+  "this": {
+    "meaning": "这个",
+    "icon": "👉"
+  },
+  "that": {
+    "meaning": "那个",
+    "icon": "👉"
+  },
+  "some": {
+    "meaning": "一些",
+    "icon": "🍎"
+  },
+  "all": {
+    "meaning": "所有；全部",
+    "icon": "👪"
+  },
+  "with": {
+    "meaning": "和……一起；用",
+    "icon": "🤝"
+  },
+  "because": {
+    "meaning": "因为",
+    "icon": "💬"
+  },
+  "very": {
+    "meaning": "很；非常",
+    "icon": "⭐"
+  },
+  "not": {
+    "meaning": "不；不是",
+    "icon": "🙅"
+  },
+  "can": {
+    "meaning": "能；会",
+    "icon": "💪"
+  },
+  "have": {
+    "meaning": "有",
+    "icon": "🎒"
+  },
+  "i": {
+    "meaning": "我",
+    "icon": "🙋"
+  },
+  "you": {
+    "meaning": "你；你们",
+    "icon": "👋"
+  },
+  "it": {
+    "meaning": "它",
+    "icon": "🐱"
+  },
+  "is": {
+    "meaning": "是（用于 he／she／it 等）",
+    "icon": "💬"
+  },
+  "are": {
+    "meaning": "是（用于 you／we／they 等）",
+    "icon": "💬"
+  },
+  "to": {
+    "meaning": "到；向；用于动词前",
+    "icon": "➡️"
+  },
+  "for": {
+    "meaning": "给；为了",
+    "icon": "🎁"
+  },
+  "up": {
+    "meaning": "向上",
+    "icon": "⬆️"
+  },
+  "down": {
+    "meaning": "向下",
+    "icon": "⬇️"
+  },
+  "out": {
+    "meaning": "向外；在外",
+    "icon": "🚪"
+  },
+  "here": {
+    "meaning": "这里",
+    "icon": "📍"
+  },
+  "there": {
+    "meaning": "那里",
+    "icon": "📍"
+  },
+  "what": {
+    "meaning": "什么",
+    "icon": "❓"
+  },
+  "where": {
+    "meaning": "哪里",
+    "icon": "📍"
+  },
+  "when": {
+    "meaning": "什么时候",
+    "icon": "⏰"
+  },
+  "look": {
+    "meaning": "看",
+    "icon": "👀"
+  },
+  "see": {
+    "meaning": "看见",
+    "icon": "👀"
+  },
+  "go": {
+    "meaning": "去",
+    "icon": "🚶"
+  },
+  "want": {
+    "meaning": "想要",
+    "icon": "🧸"
+  },
+  "find": {
+    "meaning": "找到",
+    "icon": "🔎"
+  },
+  "was": {
+    "meaning": "是（am／is 的过去式）",
+    "icon": "📖"
+  },
+  "little": {
+    "meaning": "小的",
+    "icon": "🐣"
+  },
+  "again": {
+    "meaning": "再一次",
+    "icon": "🔁"
+  },
+  "then": {
+    "meaning": "然后",
+    "icon": "➡️"
+  },
+  "about": {
+    "meaning": "关于",
+    "icon": ""
+  },
+  "across": {
+    "meaning": "穿过",
+    "icon": ""
+  },
+  "add": {
+    "meaning": "添加",
+    "icon": ""
+  },
+  "adds": {
+    "meaning": "添加",
+    "icon": ""
+  },
+  "after": {
+    "meaning": "在……之后",
+    "icon": ""
+  },
+  "along": {
+    "meaning": "沿着；一直",
+    "icon": ""
+  },
+  "always": {
+    "meaning": "总是",
+    "icon": ""
+  },
+  "am": {
+    "meaning": "是",
+    "icon": ""
+  },
+  "animal": {
+    "meaning": "动物",
+    "icon": ""
+  },
+  "another": {
+    "meaning": "另一个",
+    "icon": ""
+  },
+  "anywhere": {
+    "meaning": "任何地方",
+    "icon": ""
+  },
+  "appears": {
+    "meaning": "出现",
+    "icon": ""
+  },
+  "apples": {
+    "meaning": "苹果",
+    "icon": ""
+  },
+  "around": {
+    "meaning": "围绕",
+    "icon": ""
+  },
+  "as": {
+    "meaning": "当……时；作为",
+    "icon": ""
+  },
+  "ask": {
+    "meaning": "询问；邀请",
+    "icon": ""
+  },
+  "asks": {
+    "meaning": "询问；邀请",
+    "icon": ""
+  },
+  "at": {
+    "meaning": "在",
+    "icon": ""
+  },
+  "away": {
+    "meaning": "离开",
+    "icon": ""
+  },
+  "back": {
+    "meaning": "回来；背部",
+    "icon": ""
+  },
+  "bananas": {
+    "meaning": "香蕉",
+    "icon": ""
+  },
+  "before": {
+    "meaning": "在……之前",
+    "icon": ""
+  },
+  "ben": {
+    "meaning": "本（名字）",
+    "icon": ""
+  },
+  "bench": {
+    "meaning": "长椅",
+    "icon": ""
+  },
+  "bend": {
+    "meaning": "弯腰",
+    "icon": ""
+  },
+  "beside": {
+    "meaning": "在……旁边",
+    "icon": ""
+  },
+  "bigger": {
+    "meaning": "更大的",
+    "icon": ""
+  },
+  "biggest": {
+    "meaning": "最大的",
+    "icon": ""
+  },
+  "blanket": {
+    "meaning": "毯子",
+    "icon": ""
+  },
+  "books": {
+    "meaning": "书",
+    "icon": ""
+  },
+  "both": {
+    "meaning": "两个都",
+    "icon": ""
+  },
+  "box": {
+    "meaning": "盒子",
+    "icon": ""
+  },
+  "branch": {
+    "meaning": "树枝",
+    "icon": ""
+  },
+  "branches": {
+    "meaning": "树枝",
+    "icon": ""
+  },
+  "brightly": {
+    "meaning": "明亮地",
+    "icon": ""
+  },
+  "bring": {
+    "meaning": "带来",
+    "icon": ""
+  },
+  "brings": {
+    "meaning": "带来",
+    "icon": ""
+  },
+  "build": {
+    "meaning": "搭建",
+    "icon": ""
+  },
+  "building": {
+    "meaning": "搭建",
+    "icon": ""
+  },
+  "by": {
+    "meaning": "在……旁边",
+    "icon": ""
+  },
+  "cannot": {
+    "meaning": "不能",
+    "icon": ""
+  },
+  "carefully": {
+    "meaning": "仔细地",
+    "icon": ""
+  },
+  "carries": {
+    "meaning": "搬运；携带",
+    "icon": ""
+  },
+  "catch": {
+    "meaning": "接住",
+    "icon": ""
+  },
+  "cats": {
+    "meaning": "猫",
+    "icon": ""
+  },
+  "chairs": {
+    "meaning": "椅子",
+    "icon": ""
+  },
+  "child": {
+    "meaning": "孩子",
+    "icon": ""
+  },
+  "circle": {
+    "meaning": "圆圈",
+    "icon": ""
+  },
+  "circles": {
+    "meaning": "圆圈",
+    "icon": ""
+  },
+  "close": {
+    "meaning": "合上",
+    "icon": ""
+  },
+  "closer": {
+    "meaning": "更近",
+    "icon": ""
+  },
+  "comes": {
+    "meaning": "来到",
+    "icon": ""
+  },
+  "crawl": {
+    "meaning": "爬行",
+    "icon": ""
+  },
+  "cross": {
+    "meaning": "穿过",
+    "icon": ""
+  },
+  "cut": {
+    "meaning": "切",
+    "icon": ""
+  },
+  "dark": {
+    "meaning": "暗的",
+    "icon": ""
+  },
+  "day": {
+    "meaning": "一天",
+    "icon": ""
+  },
+  "decide": {
+    "meaning": "决定",
+    "icon": ""
+  },
+  "different": {
+    "meaning": "不同的",
+    "icon": ""
+  },
+  "doorway": {
+    "meaning": "门口",
+    "icon": ""
+  },
+  "draws": {
+    "meaning": "画",
+    "icon": ""
+  },
+  "drifting": {
+    "meaning": "缓缓飘动",
+    "icon": ""
+  },
+  "drops": {
+    "meaning": "水滴",
+    "icon": ""
+  },
+  "ducks": {
+    "meaning": "鸭子",
+    "icon": ""
+  },
+  "each": {
+    "meaning": "每个",
+    "icon": ""
+  },
+  "edge": {
+    "meaning": "边缘",
+    "icon": ""
+  },
+  "enjoy": {
+    "meaning": "享受",
+    "icon": ""
+  },
+  "even": {
+    "meaning": "即使",
+    "icon": ""
+  },
+  "every": {
+    "meaning": "每个",
+    "icon": ""
+  },
+  "everyone": {
+    "meaning": "每个人",
+    "icon": ""
+  },
+  "fallen": {
+    "meaning": "落下的",
+    "icon": ""
+  },
+  "far": {
+    "meaning": "远",
+    "icon": ""
+  },
+  "favorite": {
+    "meaning": "最喜欢的",
+    "icon": ""
+  },
+  "feel": {
+    "meaning": "感觉",
+    "icon": ""
+  },
+  "feet": {
+    "meaning": "脚",
+    "icon": ""
+  },
+  "finds": {
+    "meaning": "找到",
+    "icon": ""
+  },
+  "first": {
+    "meaning": "首先",
+    "icon": ""
+  },
+  "fit": {
+    "meaning": "容得下",
+    "icon": ""
+  },
+  "fold": {
+    "meaning": "折叠",
+    "icon": ""
+  },
+  "food": {
+    "meaning": "食物",
+    "icon": ""
+  },
+  "friends": {
+    "meaning": "朋友",
+    "icon": ""
+  },
+  "from": {
+    "meaning": "从",
+    "icon": ""
+  },
+  "front": {
+    "meaning": "前面；封面",
+    "icon": ""
+  },
+  "fruit": {
+    "meaning": "水果",
+    "icon": ""
+  },
+  "funny": {
+    "meaning": "有趣的",
+    "icon": ""
+  },
+  "gate": {
+    "meaning": "大门",
+    "icon": ""
+  },
+  "gentle": {
+    "meaning": "轻柔的",
+    "icon": ""
+  },
+  "gently": {
+    "meaning": "轻轻地",
+    "icon": ""
+  },
+  "get": {
+    "meaning": "拿到；到达",
+    "icon": ""
+  },
+  "gets": {
+    "meaning": "得到；到达",
+    "icon": ""
+  },
+  "girl": {
+    "meaning": "女孩",
+    "icon": ""
+  },
+  "give": {
+    "meaning": "给予",
+    "icon": ""
+  },
+  "goes": {
+    "meaning": "去",
+    "icon": ""
+  },
+  "gone": {
+    "meaning": "离开了",
+    "icon": ""
+  },
+  "good": {
+    "meaning": "好的",
+    "icon": ""
+  },
+  "goodbye": {
+    "meaning": "再见",
+    "icon": ""
+  },
+  "gray": {
+    "meaning": "灰色的",
+    "icon": ""
+  },
+  "growing": {
+    "meaning": "生长",
+    "icon": ""
+  },
+  "has": {
+    "meaning": "有",
+    "icon": ""
+  },
+  "hello": {
+    "meaning": "你好",
+    "icon": ""
+  },
+  "helps": {
+    "meaning": "帮助",
+    "icon": ""
+  },
+  "her": {
+    "meaning": "她；她的",
+    "icon": ""
+  },
+  "hide": {
+    "meaning": "躲藏",
+    "icon": ""
+  },
+  "hides": {
+    "meaning": "遮住",
+    "icon": ""
+  },
+  "his": {
+    "meaning": "他的",
+    "icon": ""
+  },
+  "holds": {
+    "meaning": "拿着；撑着",
+    "icon": ""
+  },
+  "holiday": {
+    "meaning": "假期",
+    "icon": ""
+  },
+  "home": {
+    "meaning": "家",
+    "icon": ""
+  },
+  "hug": {
+    "meaning": "拥抱",
+    "icon": ""
+  },
+  "if": {
+    "meaning": "是否；如果",
+    "icon": ""
+  },
+  "indoors": {
+    "meaning": "在室内",
+    "icon": ""
+  },
+  "inside": {
+    "meaning": "在里面",
+    "icon": ""
+  },
+  "into": {
+    "meaning": "进入",
+    "icon": ""
+  },
+  "invite": {
+    "meaning": "邀请",
+    "icon": ""
+  },
+  "its": {
+    "meaning": "它的",
+    "icon": ""
+  },
+  "join": {
+    "meaning": "加入",
+    "icon": ""
+  },
+  "journey": {
+    "meaning": "旅程",
+    "icon": ""
+  },
+  "just": {
+    "meaning": "刚好",
+    "icon": ""
+  },
+  "kick": {
+    "meaning": "踢",
+    "icon": ""
+  },
+  "kicks": {
+    "meaning": "踢",
+    "icon": ""
+  },
+  "last": {
+    "meaning": "上一个",
+    "icon": ""
+  },
+  "later": {
+    "meaning": "后来",
+    "icon": ""
+  },
+  "laugh": {
+    "meaning": "笑",
+    "icon": ""
+  },
+  "laughs": {
+    "meaning": "笑",
+    "icon": ""
+  },
+  "leave": {
+    "meaning": "留下；离开",
+    "icon": ""
+  },
+  "leaves": {
+    "meaning": "叶子；离开",
+    "icon": ""
+  },
+  "lids": {
+    "meaning": "盖子",
+    "icon": ""
+  },
+  "lies": {
+    "meaning": "躺着；位于",
+    "icon": ""
+  },
+  "lifts": {
+    "meaning": "提起",
+    "icon": ""
+  },
+  "lighthouse": {
+    "meaning": "灯塔",
+    "icon": ""
+  },
+  "like": {
+    "meaning": "喜欢；像",
+    "icon": ""
+  },
+  "likes": {
+    "meaning": "喜欢",
+    "icon": ""
+  },
+  "longer": {
+    "meaning": "更长",
+    "icon": ""
+  },
+  "looks": {
+    "meaning": "看；看起来",
+    "icon": ""
+  },
+  "love": {
+    "meaning": "爱",
+    "icon": ""
+  },
+  "made": {
+    "meaning": "做了",
+    "icon": ""
+  },
+  "make": {
+    "meaning": "制作",
+    "icon": ""
+  },
+  "makes": {
+    "meaning": "制作",
+    "icon": ""
+  },
+  "man": {
+    "meaning": "男子",
+    "icon": ""
+  },
+  "may": {
+    "meaning": "梅（名字）",
+    "icon": ""
+  },
+  "me": {
+    "meaning": "我",
+    "icon": ""
+  },
+  "mia": {
+    "meaning": "米娅（名字）",
+    "icon": ""
+  },
+  "mistake": {
+    "meaning": "错误",
+    "icon": ""
+  },
+  "moves": {
+    "meaning": "移动",
+    "icon": ""
+  },
+  "much": {
+    "meaning": "很多",
+    "icon": ""
+  },
+  "music": {
+    "meaning": "音乐",
+    "icon": ""
+  },
+  "name": {
+    "meaning": "名字",
+    "icon": ""
+  },
+  "names": {
+    "meaning": "名字",
+    "icon": ""
+  },
+  "nap": {
+    "meaning": "打盹",
+    "icon": ""
+  },
+  "needs": {
+    "meaning": "需要",
+    "icon": ""
+  },
+  "new": {
+    "meaning": "新的",
+    "icon": ""
+  },
+  "no": {
+    "meaning": "没有；不",
+    "icon": ""
+  },
+  "note": {
+    "meaning": "纸条",
+    "icon": ""
+  },
+  "notebook": {
+    "meaning": "笔记本",
+    "icon": ""
+  },
+  "now": {
+    "meaning": "现在",
+    "icon": ""
+  },
+  "of": {
+    "meaning": "……的",
+    "icon": ""
+  },
+  "off": {
+    "meaning": "离开",
+    "icon": ""
+  },
+  "only": {
+    "meaning": "只有",
+    "icon": ""
+  },
+  "open": {
+    "meaning": "打开",
+    "icon": ""
+  },
+  "opens": {
+    "meaning": "打开",
+    "icon": ""
+  },
+  "other": {
+    "meaning": "其他的",
+    "icon": ""
+  },
+  "our": {
+    "meaning": "我们的",
+    "icon": ""
+  },
+  "over": {
+    "meaning": "越过；在上方",
+    "icon": ""
+  },
+  "pack": {
+    "meaning": "装好",
+    "icon": ""
+  },
+  "page": {
+    "meaning": "书页",
+    "icon": ""
+  },
+  "paints": {
+    "meaning": "画；涂色",
+    "icon": ""
+  },
+  "pass": {
+    "meaning": "经过",
+    "icon": ""
+  },
+  "path": {
+    "meaning": "小路",
+    "icon": ""
+  },
+  "peeks": {
+    "meaning": "悄悄露出",
+    "icon": ""
+  },
+  "picnic": {
+    "meaning": "野餐",
+    "icon": ""
+  },
+  "picture": {
+    "meaning": "图画",
+    "icon": ""
+  },
+  "pictures": {
+    "meaning": "图画",
+    "icon": ""
+  },
+  "pillow": {
+    "meaning": "枕头",
+    "icon": ""
+  },
+  "pip": {
+    "meaning": "皮普（名字）",
+    "icon": ""
+  },
+  "place": {
+    "meaning": "地方",
+    "icon": ""
+  },
+  "places": {
+    "meaning": "放置",
+    "icon": ""
+  },
+  "plates": {
+    "meaning": "盘子",
+    "icon": ""
+  },
+  "play": {
+    "meaning": "玩耍",
+    "icon": ""
+  },
+  "playing": {
+    "meaning": "玩耍",
+    "icon": ""
+  },
+  "points": {
+    "meaning": "指向",
+    "icon": ""
+  },
+  "pot": {
+    "meaning": "花盆",
+    "icon": ""
+  },
+  "puddle": {
+    "meaning": "水坑",
+    "icon": ""
+  },
+  "pushes": {
+    "meaning": "推；钻出",
+    "icon": ""
+  },
+  "put": {
+    "meaning": "放",
+    "icon": ""
+  },
+  "puts": {
+    "meaning": "放",
+    "icon": ""
+  },
+  "quack": {
+    "meaning": "嘎嘎",
+    "icon": ""
+  },
+  "quiet": {
+    "meaning": "安静的",
+    "icon": ""
+  },
+  "quietly": {
+    "meaning": "安静地",
+    "icon": ""
+  },
+  "rainbow": {
+    "meaning": "彩虹",
+    "icon": ""
+  },
+  "raining": {
+    "meaning": "下雨",
+    "icon": ""
+  },
+  "reaches": {
+    "meaning": "到达",
+    "icon": ""
+  },
+  "reads": {
+    "meaning": "读",
+    "icon": ""
+  },
+  "ready": {
+    "meaning": "准备好的",
+    "icon": ""
+  },
+  "remember": {
+    "meaning": "记得",
+    "icon": ""
+  },
+  "reminds": {
+    "meaning": "提醒",
+    "icon": ""
+  },
+  "roll": {
+    "meaning": "滚动",
+    "icon": ""
+  },
+  "rolls": {
+    "meaning": "滚动",
+    "icon": ""
+  },
+  "round": {
+    "meaning": "圆的；绕过",
+    "icon": ""
+  },
+  "sail": {
+    "meaning": "航行；帆",
+    "icon": ""
+  },
+  "sam": {
+    "meaning": "山姆（名字）",
+    "icon": ""
+  },
+  "say": {
+    "meaning": "说",
+    "icon": ""
+  },
+  "seat": {
+    "meaning": "座位",
+    "icon": ""
+  },
+  "seek": {
+    "meaning": "寻找",
+    "icon": ""
+  },
+  "sees": {
+    "meaning": "看见",
+    "icon": ""
+  },
+  "share": {
+    "meaning": "分享",
+    "icon": ""
+  },
+  "sheet": {
+    "meaning": "一张",
+    "icon": ""
+  },
+  "shine": {
+    "meaning": "闪耀",
+    "icon": ""
+  },
+  "shines": {
+    "meaning": "照亮",
+    "icon": ""
+  },
+  "shone": {
+    "meaning": "照耀了",
+    "icon": ""
+  },
+  "shoot": {
+    "meaning": "嫩芽",
+    "icon": ""
+  },
+  "shops": {
+    "meaning": "商店",
+    "icon": ""
+  },
+  "shore": {
+    "meaning": "岸边",
+    "icon": ""
+  },
+  "silver": {
+    "meaning": "银色的",
+    "icon": ""
+  },
+  "sit": {
+    "meaning": "坐",
+    "icon": ""
+  },
+  "sits": {
+    "meaning": "坐",
+    "icon": ""
+  },
+  "sitting": {
+    "meaning": "坐着",
+    "icon": ""
+  },
+  "sky": {
+    "meaning": "天空",
+    "icon": ""
+  },
+  "sleeping": {
+    "meaning": "睡觉",
+    "icon": ""
+  },
+  "slowly": {
+    "meaning": "慢慢地",
+    "icon": ""
+  },
+  "smallest": {
+    "meaning": "最小的",
+    "icon": ""
+  },
+  "smiles": {
+    "meaning": "微笑",
+    "icon": ""
+  },
+  "so": {
+    "meaning": "所以；这样",
+    "icon": ""
+  },
+  "soft": {
+    "meaning": "柔软的",
+    "icon": ""
+  },
+  "soil": {
+    "meaning": "泥土",
+    "icon": ""
+  },
+  "something": {
+    "meaning": "某个东西",
+    "icon": ""
+  },
+  "soon": {
+    "meaning": "不久",
+    "icon": ""
+  },
+  "sore": {
+    "meaning": "疼痛的",
+    "icon": ""
+  },
+  "sounds": {
+    "meaning": "听起来",
+    "icon": ""
+  },
+  "space": {
+    "meaning": "空间",
+    "icon": ""
+  },
+  "splash": {
+    "meaning": "溅水声",
+    "icon": ""
+  },
+  "stand": {
+    "meaning": "站立",
+    "icon": ""
+  },
+  "stars": {
+    "meaning": "星星",
+    "icon": ""
+  },
+  "stay": {
+    "meaning": "停留",
+    "icon": ""
+  },
+  "steps": {
+    "meaning": "迈步",
+    "icon": ""
+  },
+  "stick": {
+    "meaning": "树枝；棍子",
+    "icon": ""
+  },
+  "still": {
+    "meaning": "仍然",
+    "icon": ""
+  },
+  "stops": {
+    "meaning": "停下",
+    "icon": ""
+  },
+  "story": {
+    "meaning": "故事",
+    "icon": ""
+  },
+  "strawberries": {
+    "meaning": "草莓",
+    "icon": ""
+  },
+  "stretches": {
+    "meaning": "伸展",
+    "icon": ""
+  },
+  "tail": {
+    "meaning": "尾巴",
+    "icon": ""
+  },
+  "tails": {
+    "meaning": "尾巴",
+    "icon": ""
+  },
+  "take": {
+    "meaning": "带；乘坐",
+    "icon": ""
+  },
+  "takes": {
+    "meaning": "花费；带",
+    "icon": ""
+  },
+  "tastes": {
+    "meaning": "尝起来",
+    "icon": ""
+  },
+  "tell": {
+    "meaning": "告诉",
+    "icon": ""
+  },
+  "tells": {
+    "meaning": "告诉",
+    "icon": ""
+  },
+  "thank": {
+    "meaning": "感谢",
+    "icon": ""
+  },
+  "their": {
+    "meaning": "他们的",
+    "icon": ""
+  },
+  "them": {
+    "meaning": "他们",
+    "icon": ""
+  },
+  "thick": {
+    "meaning": "厚的",
+    "icon": ""
+  },
+  "think": {
+    "meaning": "思考",
+    "icon": ""
+  },
+  "through": {
+    "meaning": "穿过",
+    "icon": ""
+  },
+  "time": {
+    "meaning": "时间；次",
+    "icon": ""
+  },
+  "tiny": {
+    "meaning": "小小的",
+    "icon": ""
+  },
+  "together": {
+    "meaning": "一起",
+    "icon": ""
+  },
+  "tonight": {
+    "meaning": "今晚",
+    "icon": ""
+  },
+  "too": {
+    "meaning": "也；太",
+    "icon": ""
+  },
+  "toward": {
+    "meaning": "朝着",
+    "icon": ""
+  },
+  "trees": {
+    "meaning": "树",
+    "icon": ""
+  },
+  "turn": {
+    "meaning": "轮到的机会",
+    "icon": ""
+  },
+  "twig": {
+    "meaning": "细树枝",
+    "icon": ""
+  },
+  "umbrella": {
+    "meaning": "雨伞",
+    "icon": ""
+  },
+  "underneath": {
+    "meaning": "在下面",
+    "icon": ""
+  },
+  "until": {
+    "meaning": "直到",
+    "icon": ""
+  },
+  "upon": {
+    "meaning": "在……上面",
+    "icon": ""
+  },
+  "upset": {
+    "meaning": "难过的",
+    "icon": ""
+  },
+  "us": {
+    "meaning": "我们",
+    "icon": ""
+  },
+  "use": {
+    "meaning": "使用",
+    "icon": ""
+  },
+  "using": {
+    "meaning": "使用",
+    "icon": ""
+  },
+  "usual": {
+    "meaning": "平常的",
+    "icon": ""
+  },
+  "wait": {
+    "meaning": "等待",
+    "icon": ""
+  },
+  "walks": {
+    "meaning": "走",
+    "icon": ""
+  },
+  "wanted": {
+    "meaning": "想要",
+    "icon": ""
+  },
+  "wants": {
+    "meaning": "想要",
+    "icon": ""
+  },
+  "warm": {
+    "meaning": "温暖的",
+    "icon": ""
+  },
+  "washes": {
+    "meaning": "洗",
+    "icon": ""
+  },
+  "watch": {
+    "meaning": "观察",
+    "icon": ""
+  },
+  "wave": {
+    "meaning": "挥手",
+    "icon": ""
+  },
+  "way": {
+    "meaning": "路；办法",
+    "icon": ""
+  },
+  "well": {
+    "meaning": "好；也",
+    "icon": ""
+  },
+  "whole": {
+    "meaning": "整个",
+    "icon": ""
+  },
+  "wooden": {
+    "meaning": "木制的",
+    "icon": ""
+  },
+  "worried": {
+    "meaning": "担心的",
+    "icon": ""
+  }
+}

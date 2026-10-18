@@ -1,0 +1,2285 @@
+[
+  {
+    "id": "l1-01",
+    "level": 1,
+    "title": "Hello, Sea!",
+    "subtitle": "你好，大海",
+    "icon": "🌊",
+    "pages": [
+      {
+        "text": "I see the sea.",
+        "hint": "我看见大海。",
+        "icon": "🌊",
+        "scene": [
+          "🌊"
+        ]
+      },
+      {
+        "text": "I see a boat.",
+        "hint": "我看见一条船。",
+        "icon": "🌊",
+        "scene": [
+          "⛵"
+        ]
+      },
+      {
+        "text": "I see a bird.",
+        "hint": "我看见一只鸟。",
+        "icon": "🌊",
+        "scene": [
+          "🐦"
+        ]
+      },
+      {
+        "text": "I see a fish.",
+        "hint": "我看见一条鱼。",
+        "icon": "🌊",
+        "scene": [
+          "🐟"
+        ]
+      },
+      {
+        "text": "I see a light.",
+        "hint": "我看见一道光。",
+        "icon": "🌊",
+        "scene": [
+          "✨"
+        ]
+      },
+      {
+        "text": "Hello, sea!",
+        "hint": "你好，大海！",
+        "icon": "🌊",
+        "scene": [
+          "🌊"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-02",
+    "level": 1,
+    "title": "My Cat",
+    "subtitle": "我的小猫",
+    "icon": "🐈",
+    "pages": [
+      {
+        "text": "This is my cat.",
+        "hint": "这是我的猫。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "My cat is small.",
+        "hint": "我的猫很小。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "My cat can sit.",
+        "hint": "我的猫会坐。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "My cat can run.",
+        "hint": "我的猫会跑。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "My cat can nap.",
+        "hint": "我的猫会打盹。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "I love my cat.",
+        "hint": "我爱我的猫。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-03",
+    "level": 1,
+    "title": "Red Apple",
+    "subtitle": "红苹果",
+    "icon": "🍎",
+    "pages": [
+      {
+        "text": "Look at the apple.",
+        "hint": "看这个苹果。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "It is red.",
+        "hint": "它是红色的。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "It is round.",
+        "hint": "它是圆的。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "I wash the apple.",
+        "hint": "我洗苹果。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "I cut the apple.",
+        "hint": "我切苹果。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "We eat the apple.",
+        "hint": "我们吃苹果。",
+        "icon": "🍎",
+        "scene": [
+          "🍎"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-04",
+    "level": 1,
+    "title": "Rain, Rain",
+    "subtitle": "下雨啦",
+    "icon": "🌧️",
+    "pages": [
+      {
+        "text": "I see a cloud.",
+        "hint": "我看见一朵云。",
+        "icon": "🌧️",
+        "scene": [
+          "☁️"
+        ]
+      },
+      {
+        "text": "The cloud is gray.",
+        "hint": "云是灰色的。",
+        "icon": "🌧️",
+        "scene": [
+          "☁️"
+        ]
+      },
+      {
+        "text": "Here is the rain.",
+        "hint": "下雨了。",
+        "icon": "🌧️",
+        "scene": [
+          "🌧️"
+        ]
+      },
+      {
+        "text": "I get my boots.",
+        "hint": "我拿来靴子。",
+        "icon": "🌧️",
+        "scene": [
+          "🥾"
+        ]
+      },
+      {
+        "text": "I see a puddle.",
+        "hint": "我看见一个水坑。",
+        "icon": "🌧️",
+        "scene": [
+          "💧"
+        ]
+      },
+      {
+        "text": "Splash, splash!",
+        "hint": "啪嗒，啪嗒！",
+        "icon": "🌧️",
+        "scene": [
+          "🌧️"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-05",
+    "level": 1,
+    "title": "A Little Seed",
+    "subtitle": "一粒种子",
+    "icon": "🌱",
+    "pages": [
+      {
+        "text": "Here is a seed.",
+        "hint": "这是一粒种子。",
+        "icon": "🌱",
+        "scene": [
+          "🌱"
+        ]
+      },
+      {
+        "text": "Here is a pot.",
+        "hint": "这是一个花盆。",
+        "icon": "🌱",
+        "scene": [
+          "🪴"
+        ]
+      },
+      {
+        "text": "In goes the seed.",
+        "hint": "种子放进去了。",
+        "icon": "🌱",
+        "scene": [
+          "🌱"
+        ]
+      },
+      {
+        "text": "Here is water.",
+        "hint": "这是水。",
+        "icon": "🌱",
+        "scene": [
+          "💧"
+        ]
+      },
+      {
+        "text": "Here is the sun.",
+        "hint": "太阳出来了。",
+        "icon": "🌱",
+        "scene": [
+          "☀️"
+        ]
+      },
+      {
+        "text": "I see a leaf!",
+        "hint": "我看见一片叶子！",
+        "icon": "🌱",
+        "scene": [
+          "🌿"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-06",
+    "level": 1,
+    "title": "My Blue Bus",
+    "subtitle": "蓝色巴士",
+    "icon": "🚌",
+    "pages": [
+      {
+        "text": "This is a bus.",
+        "hint": "这是一辆巴士。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "The bus is blue.",
+        "hint": "巴士是蓝色的。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "The bus is big.",
+        "hint": "巴士很大。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "I get on.",
+        "hint": "我上车。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "I sit down.",
+        "hint": "我坐下。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "Off we go!",
+        "hint": "我们出发啦！",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-07",
+    "level": 1,
+    "title": "At Home",
+    "subtitle": "在家里",
+    "icon": "🏠",
+    "pages": [
+      {
+        "text": "This is my home.",
+        "hint": "这是我的家。",
+        "icon": "🏠",
+        "scene": [
+          "🏠"
+        ]
+      },
+      {
+        "text": "Here is a door.",
+        "hint": "这是一扇门。",
+        "icon": "🏠",
+        "scene": [
+          "🚪"
+        ]
+      },
+      {
+        "text": "Here is a chair.",
+        "hint": "这是一把椅子。",
+        "icon": "🏠",
+        "scene": [
+          "🪑"
+        ]
+      },
+      {
+        "text": "Here is a bed.",
+        "hint": "这是一张床。",
+        "icon": "🏠",
+        "scene": [
+          "🛏️"
+        ]
+      },
+      {
+        "text": "Here is my family.",
+        "hint": "这是我的家人。",
+        "icon": "🏠",
+        "scene": [
+          "👪"
+        ]
+      },
+      {
+        "text": "We are at home.",
+        "hint": "我们在家里。",
+        "icon": "🏠",
+        "scene": [
+          "🏠"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-08",
+    "level": 1,
+    "title": "My Ball",
+    "subtitle": "我的球",
+    "icon": "⚽",
+    "pages": [
+      {
+        "text": "I have a ball.",
+        "hint": "我有一个球。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "My ball is big.",
+        "hint": "我的球很大。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "I can roll it.",
+        "hint": "我会滚动它。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "I can kick it.",
+        "hint": "我会踢它。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "You can catch it.",
+        "hint": "你会接住它。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "We can play!",
+        "hint": "我们一起玩！",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-09",
+    "level": 1,
+    "title": "Good Night",
+    "subtitle": "晚安",
+    "icon": "🌙",
+    "pages": [
+      {
+        "text": "I see the moon.",
+        "hint": "我看见月亮。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      },
+      {
+        "text": "I see a star.",
+        "hint": "我看见一颗星星。",
+        "icon": "🌙",
+        "scene": [
+          "⭐"
+        ]
+      },
+      {
+        "text": "I close my book.",
+        "hint": "我合上书。",
+        "icon": "🌙",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "I hug my bear.",
+        "hint": "我抱住小熊。",
+        "icon": "🌙",
+        "scene": [
+          "🧸"
+        ]
+      },
+      {
+        "text": "I am in bed.",
+        "hint": "我在床上。",
+        "icon": "🌙",
+        "scene": [
+          "🛏️"
+        ]
+      },
+      {
+        "text": "Good night!",
+        "hint": "晚安！",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-10",
+    "level": 1,
+    "title": "At the Park",
+    "subtitle": "在公园",
+    "icon": "🌳",
+    "pages": [
+      {
+        "text": "Here is a park.",
+        "hint": "这是一个公园。",
+        "icon": "🌳",
+        "scene": [
+          "🌳"
+        ]
+      },
+      {
+        "text": "I see a tree.",
+        "hint": "我看见一棵树。",
+        "icon": "🌳",
+        "scene": [
+          "🌳"
+        ]
+      },
+      {
+        "text": "I see a flower.",
+        "hint": "我看见一朵花。",
+        "icon": "🌳",
+        "scene": [
+          "🌼"
+        ]
+      },
+      {
+        "text": "I see a duck.",
+        "hint": "我看见一只鸭子。",
+        "icon": "🌳",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "I see a pond.",
+        "hint": "我看见一个池塘。",
+        "icon": "🌳",
+        "scene": [
+          "🌊"
+        ]
+      },
+      {
+        "text": "I like the park.",
+        "hint": "我喜欢公园。",
+        "icon": "🌳",
+        "scene": [
+          "🌳"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-11",
+    "level": 1,
+    "title": "My Bag",
+    "subtitle": "我的书包",
+    "icon": "🎒",
+    "pages": [
+      {
+        "text": "Here is my bag.",
+        "hint": "这是我的书包。",
+        "icon": "🎒",
+        "scene": [
+          "🎒"
+        ]
+      },
+      {
+        "text": "Here is my book.",
+        "hint": "这是我的书。",
+        "icon": "🎒",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "Here is my pen.",
+        "hint": "这是我的笔。",
+        "icon": "🎒",
+        "scene": [
+          "🖊️"
+        ]
+      },
+      {
+        "text": "In goes the book.",
+        "hint": "把书放进去。",
+        "icon": "🎒",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "In goes the pen.",
+        "hint": "把笔放进去。",
+        "icon": "🎒",
+        "scene": [
+          "🖊️"
+        ]
+      },
+      {
+        "text": "I am ready!",
+        "hint": "我准备好了！",
+        "icon": "🎒",
+        "scene": [
+          "🎒"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-12",
+    "level": 1,
+    "title": "A Little Duck",
+    "subtitle": "小鸭子",
+    "icon": "🦆",
+    "pages": [
+      {
+        "text": "I am a duck.",
+        "hint": "我是一只鸭子。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "I am yellow.",
+        "hint": "我是黄色的。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "I can walk.",
+        "hint": "我会走路。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "I can swim.",
+        "hint": "我会游泳。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "I can eat.",
+        "hint": "我会吃东西。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "Quack, quack!",
+        "hint": "嘎嘎，嘎嘎！",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l1-13",
+    "level": 1,
+    "title": "Thank You",
+    "subtitle": "谢谢你",
+    "icon": "🎁",
+    "pages": [
+      {
+        "text": "Here is a box.",
+        "hint": "这是一个盒子。",
+        "icon": "🎁",
+        "scene": [
+          "🎁"
+        ]
+      },
+      {
+        "text": "It is for you.",
+        "hint": "它是给你的。",
+        "icon": "🎁",
+        "scene": [
+          "🎁"
+        ]
+      },
+      {
+        "text": "Open the box.",
+        "hint": "打开盒子。",
+        "icon": "🎁",
+        "scene": [
+          "🎁"
+        ]
+      },
+      {
+        "text": "I see a book!",
+        "hint": "我看见一本书！",
+        "icon": "🎁",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "We can read.",
+        "hint": "我们可以读书。",
+        "icon": "🎁",
+        "scene": [
+          "🎁"
+        ]
+      },
+      {
+        "text": "Thank you!",
+        "hint": "谢谢你！",
+        "icon": "🎁",
+        "scene": [
+          "🎁"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-01",
+    "level": 2,
+    "title": "The Paper Boat",
+    "subtitle": "小纸船",
+    "icon": "⛵",
+    "pages": [
+      {
+        "text": "Mia has a paper boat.",
+        "hint": "米娅有一只纸船。",
+        "icon": "⛵",
+        "scene": [
+          "📄",
+          "⛵"
+        ]
+      },
+      {
+        "text": "She puts it on the water.",
+        "hint": "她把它放在水面上。",
+        "icon": "⛵",
+        "scene": [
+          "💧"
+        ]
+      },
+      {
+        "text": "The wind helps the boat go.",
+        "hint": "风帮助纸船前进。",
+        "icon": "⛵",
+        "scene": [
+          "⛵"
+        ]
+      },
+      {
+        "text": "The boat stops by a rock.",
+        "hint": "纸船停在一块石头旁。",
+        "icon": "⛵",
+        "scene": [
+          "⛵",
+          "🪨"
+        ]
+      },
+      {
+        "text": "Mia lifts the boat with a stick.",
+        "hint": "米娅用树枝挑起纸船。",
+        "icon": "⛵",
+        "scene": [
+          "⛵",
+          "🪵"
+        ]
+      },
+      {
+        "text": "Her little boat can sail again.",
+        "hint": "她的小船又能航行了。",
+        "icon": "⛵",
+        "scene": [
+          "⛵"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-02",
+    "level": 2,
+    "title": "Where Is Cat?",
+    "subtitle": "猫在哪里",
+    "icon": "🐈",
+    "pages": [
+      {
+        "text": "Ben cannot see his cat.",
+        "hint": "本找不到他的猫。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "He looks under the table.",
+        "hint": "他看看桌子下面。",
+        "icon": "🐈",
+        "scene": [
+          "🪑"
+        ]
+      },
+      {
+        "text": "He looks behind the door.",
+        "hint": "他看看门后面。",
+        "icon": "🐈",
+        "scene": [
+          "🚪"
+        ]
+      },
+      {
+        "text": "He sees a tail by the bed.",
+        "hint": "他在床边看见一条尾巴。",
+        "icon": "🐈",
+        "scene": [
+          "🛏️"
+        ]
+      },
+      {
+        "text": "His cat is in a big box.",
+        "hint": "他的猫在一个大盒子里。",
+        "icon": "🐈",
+        "scene": [
+          "🐈",
+          "🎁"
+        ]
+      },
+      {
+        "text": "Ben sits down beside his cat.",
+        "hint": "本在猫的身旁坐下。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-03",
+    "level": 2,
+    "title": "Our Fruit Plate",
+    "subtitle": "我们的水果盘",
+    "icon": "🍓",
+    "pages": [
+      {
+        "text": "We have apples and bananas.",
+        "hint": "我们有苹果和香蕉。",
+        "icon": "🍓",
+        "scene": [
+          "🍌"
+        ]
+      },
+      {
+        "text": "Dad washes the apples for us.",
+        "hint": "爸爸帮我们洗苹果。",
+        "icon": "🍓",
+        "scene": [
+          "🍓"
+        ]
+      },
+      {
+        "text": "I put the fruit on a plate.",
+        "hint": "我把水果放在盘子上。",
+        "icon": "🍓",
+        "scene": [
+          "🍎",
+          "🍽️"
+        ]
+      },
+      {
+        "text": "My sister adds two strawberries.",
+        "hint": "妹妹放上两颗草莓。",
+        "icon": "🍓",
+        "scene": [
+          "🍓"
+        ]
+      },
+      {
+        "text": "Our plate looks like a face.",
+        "hint": "我们的盘子看起来像一张脸。",
+        "icon": "🍓",
+        "scene": [
+          "🍽️"
+        ]
+      },
+      {
+        "text": "We share the fruit with Dad.",
+        "hint": "我们和爸爸分享水果。",
+        "icon": "🍓",
+        "scene": [
+          "🍎"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-04",
+    "level": 2,
+    "title": "A Rainy Walk",
+    "subtitle": "雨中散步",
+    "icon": "☔",
+    "pages": [
+      {
+        "text": "It is raining this morning.",
+        "hint": "今天早晨在下雨。",
+        "icon": "☔",
+        "scene": [
+          "☔"
+        ]
+      },
+      {
+        "text": "I put on my yellow boots.",
+        "hint": "我穿上黄色靴子。",
+        "icon": "☔",
+        "scene": [
+          "🥾"
+        ]
+      },
+      {
+        "text": "Mum holds a big umbrella.",
+        "hint": "妈妈撑着一把大伞。",
+        "icon": "☔",
+        "scene": [
+          "☂️"
+        ]
+      },
+      {
+        "text": "We walk slowly to the shop.",
+        "hint": "我们慢慢走向商店。",
+        "icon": "☔",
+        "scene": [
+          "☔"
+        ]
+      },
+      {
+        "text": "I see circles in a puddle.",
+        "hint": "我看见水坑里有圆圈。",
+        "icon": "☔",
+        "scene": [
+          "💧"
+        ]
+      },
+      {
+        "text": "The rain makes music for us.",
+        "hint": "雨为我们奏起音乐。",
+        "icon": "☔",
+        "scene": [
+          "🌧️"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-05",
+    "level": 2,
+    "title": "Two Green Leaves",
+    "subtitle": "两片绿叶",
+    "icon": "🌿",
+    "pages": [
+      {
+        "text": "My seed is in a small pot.",
+        "hint": "我的种子在小花盆里。",
+        "icon": "🌿",
+        "scene": [
+          "🌱",
+          "🪴"
+        ]
+      },
+      {
+        "text": "I put the pot by the window.",
+        "hint": "我把花盆放在窗边。",
+        "icon": "🌿",
+        "scene": [
+          "🪴",
+          "🪟"
+        ]
+      },
+      {
+        "text": "I give the seed a little water.",
+        "hint": "我给种子浇一点水。",
+        "icon": "🌿",
+        "scene": [
+          "🌱",
+          "💧"
+        ]
+      },
+      {
+        "text": "One day I see something green.",
+        "hint": "一天，我看见一点绿色。",
+        "icon": "🌿",
+        "scene": [
+          "🌿"
+        ]
+      },
+      {
+        "text": "Two little leaves look at the sun.",
+        "hint": "两片小叶子朝着太阳。",
+        "icon": "🌿",
+        "scene": [
+          "🌿",
+          "☀️"
+        ]
+      },
+      {
+        "text": "I draw the leaves in my book.",
+        "hint": "我把叶子画在我的书里。",
+        "icon": "🌿",
+        "scene": [
+          "🌿",
+          "📖"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-06",
+    "level": 2,
+    "title": "The Bus Ride",
+    "subtitle": "坐巴士",
+    "icon": "🚌",
+    "pages": [
+      {
+        "text": "We take a bus to the park.",
+        "hint": "我们坐巴士去公园。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "I sit by the big window.",
+        "hint": "我坐在大窗户旁。",
+        "icon": "🚌",
+        "scene": [
+          "🪟"
+        ]
+      },
+      {
+        "text": "We pass a shop and a school.",
+        "hint": "我们经过一家商店和一所学校。",
+        "icon": "🚌",
+        "scene": [
+          "🏫"
+        ]
+      },
+      {
+        "text": "A man gets on with a bag.",
+        "hint": "一位男子提着包上了车。",
+        "icon": "🚌",
+        "scene": [
+          "🎒"
+        ]
+      },
+      {
+        "text": "The bus stops near a tall tree.",
+        "hint": "巴士在一棵大树附近停下。",
+        "icon": "🚌",
+        "scene": [
+          "🚌",
+          "🌳"
+        ]
+      },
+      {
+        "text": "We get off and wave goodbye.",
+        "hint": "我们下车，挥手道别。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-07",
+    "level": 2,
+    "title": "A Home for Bear",
+    "subtitle": "小熊的家",
+    "icon": "🧸",
+    "pages": [
+      {
+        "text": "My bear needs a little home.",
+        "hint": "我的小熊需要一个小家。",
+        "icon": "🧸",
+        "scene": [
+          "🧸",
+          "🏠"
+        ]
+      },
+      {
+        "text": "I find a box under my bed.",
+        "hint": "我在床下找到一个盒子。",
+        "icon": "🧸",
+        "scene": [
+          "🎁",
+          "🛏️"
+        ]
+      },
+      {
+        "text": "I put a soft hat inside.",
+        "hint": "我把一顶柔软的帽子放进去。",
+        "icon": "🧸",
+        "scene": [
+          "👒"
+        ]
+      },
+      {
+        "text": "The hat is a bed for Bear.",
+        "hint": "帽子就是小熊的床。",
+        "icon": "🧸",
+        "scene": [
+          "👒",
+          "🛏️",
+          "🧸"
+        ]
+      },
+      {
+        "text": "I put a book beside the box.",
+        "hint": "我在盒子旁放了一本书。",
+        "icon": "🧸",
+        "scene": [
+          "📖",
+          "🎁"
+        ]
+      },
+      {
+        "text": "Now Bear has a place to sleep.",
+        "hint": "现在小熊有睡觉的地方了。",
+        "icon": "🧸",
+        "scene": [
+          "🧸"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-08",
+    "level": 2,
+    "title": "Can We Play?",
+    "subtitle": "一起玩吧",
+    "icon": "⚽",
+    "pages": [
+      {
+        "text": "I take my ball to the park.",
+        "hint": "我带着球去公园。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "A girl is sitting on a bench.",
+        "hint": "一个女孩坐在长椅上。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "I ask her to play with me.",
+        "hint": "我邀请她和我一起玩。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "I roll the ball to her.",
+        "hint": "我把球滚向她。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "She kicks it back to me.",
+        "hint": "她把球踢回给我。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "We laugh and play together.",
+        "hint": "我们一起笑，一起玩。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-09",
+    "level": 2,
+    "title": "Moon at My Window",
+    "subtitle": "窗边的月亮",
+    "icon": "🌙",
+    "pages": [
+      {
+        "text": "The moon is outside my window.",
+        "hint": "月亮在我的窗外。",
+        "icon": "🌙",
+        "scene": [
+          "🌙",
+          "🪟"
+        ]
+      },
+      {
+        "text": "It looks like a little boat.",
+        "hint": "它看起来像一条小船。",
+        "icon": "🌙",
+        "scene": [
+          "⛵"
+        ]
+      },
+      {
+        "text": "I draw a moon on my paper.",
+        "hint": "我在纸上画了一轮月亮。",
+        "icon": "🌙",
+        "scene": [
+          "🌙",
+          "📄"
+        ]
+      },
+      {
+        "text": "I add three stars beside it.",
+        "hint": "我在旁边画了三颗星星。",
+        "icon": "🌙",
+        "scene": [
+          "✨"
+        ]
+      },
+      {
+        "text": "Dad puts my picture by my bed.",
+        "hint": "爸爸把我的画放在床边。",
+        "icon": "🌙",
+        "scene": [
+          "🛏️"
+        ]
+      },
+      {
+        "text": "Now I have a moon inside too.",
+        "hint": "现在屋里也有月亮了。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-10",
+    "level": 2,
+    "title": "A Quiet Pond",
+    "subtitle": "安静的池塘",
+    "icon": "🦆",
+    "pages": [
+      {
+        "text": "We walk to a quiet pond.",
+        "hint": "我们走到一个安静的池塘边。",
+        "icon": "🦆",
+        "scene": [
+          "🌊"
+        ]
+      },
+      {
+        "text": "Three ducks are on the water.",
+        "hint": "三只鸭子在水上。",
+        "icon": "🦆",
+        "scene": [
+          "🦆",
+          "💧"
+        ]
+      },
+      {
+        "text": "One duck puts its head down.",
+        "hint": "一只鸭子把头低了下去。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "Its little tail points up.",
+        "hint": "它的小尾巴朝上。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "We sit and watch the ducks.",
+        "hint": "我们坐着看鸭子。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "Then we leave the pond quietly.",
+        "hint": "然后我们安静地离开池塘。",
+        "icon": "🦆",
+        "scene": [
+          "🌊"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-11",
+    "level": 2,
+    "title": "Ready for School",
+    "subtitle": "准备上学",
+    "icon": "🎒",
+    "pages": [
+      {
+        "text": "I open my bag after breakfast.",
+        "hint": "早餐后我打开书包。",
+        "icon": "🎒",
+        "scene": [
+          "🎒"
+        ]
+      },
+      {
+        "text": "I put my book in first.",
+        "hint": "我先把书放进去。",
+        "icon": "🎒",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "My pen is not on the desk.",
+        "hint": "我的笔不在桌子上。",
+        "icon": "🎒",
+        "scene": [
+          "🖊️"
+        ]
+      },
+      {
+        "text": "I look beside my red cup.",
+        "hint": "我看看红色杯子旁边。",
+        "icon": "🎒",
+        "scene": [
+          "☕"
+        ]
+      },
+      {
+        "text": "There is my pen by the cup!",
+        "hint": "我的笔就在杯子旁！",
+        "icon": "🎒",
+        "scene": [
+          "🖊️",
+          "☕"
+        ]
+      },
+      {
+        "text": "Now my bag is ready for school.",
+        "hint": "现在我的书包准备好去上学了。",
+        "icon": "🎒",
+        "scene": [
+          "🎒",
+          "🏫"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-12",
+    "level": 2,
+    "title": "The Slow Duck",
+    "subtitle": "慢慢走的小鸭",
+    "icon": "🦆",
+    "pages": [
+      {
+        "text": "Four ducks walk to the pond.",
+        "hint": "四只鸭子走向池塘。",
+        "icon": "🦆",
+        "scene": [
+          "🦆",
+          "🌊"
+        ]
+      },
+      {
+        "text": "The little duck walks very slowly.",
+        "hint": "小鸭子走得很慢。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "It stops to look at a flower.",
+        "hint": "它停下来看看一朵花。",
+        "icon": "🦆",
+        "scene": [
+          "🌼"
+        ]
+      },
+      {
+        "text": "The other ducks wait by a tree.",
+        "hint": "其他鸭子在树旁等着。",
+        "icon": "🦆",
+        "scene": [
+          "🦆",
+          "🌳"
+        ]
+      },
+      {
+        "text": "The little duck comes to the tree.",
+        "hint": "小鸭子来到树旁。",
+        "icon": "🦆",
+        "scene": [
+          "🦆",
+          "🌳"
+        ]
+      },
+      {
+        "text": "All four ducks swim together.",
+        "hint": "四只鸭子一起游泳。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2-13",
+    "level": 2,
+    "title": "A Book for Grandma",
+    "subtitle": "给奶奶的书",
+    "icon": "📚",
+    "pages": [
+      {
+        "text": "I make a book for Grandma.",
+        "hint": "我给奶奶做一本书。",
+        "icon": "📚",
+        "scene": [
+          "📖",
+          "👵"
+        ]
+      },
+      {
+        "text": "I draw our house on one page.",
+        "hint": "我在一页上画我们的房子。",
+        "icon": "📚",
+        "scene": [
+          "🏠"
+        ]
+      },
+      {
+        "text": "I draw her cat on another page.",
+        "hint": "我在另一页上画她的猫。",
+        "icon": "📚",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "I write my name on the front.",
+        "hint": "我在封面写上我的名字。",
+        "icon": "📚",
+        "scene": [
+          "📚"
+        ]
+      },
+      {
+        "text": "Grandma opens the book and smiles.",
+        "hint": "奶奶打开书，笑了。",
+        "icon": "📚",
+        "scene": [
+          "👵",
+          "📖"
+        ]
+      },
+      {
+        "text": "We read my little book together.",
+        "hint": "我们一起读我的小书。",
+        "icon": "📚",
+        "scene": [
+          "📖"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-01",
+    "level": 3,
+    "title": "The Light on the Shore",
+    "subtitle": "岸边的灯光",
+    "icon": "⛵",
+    "pages": [
+      {
+        "text": "Mia makes a paper boat and paints a blue star on it.",
+        "hint": "米娅做了一只纸船，在上面画了一颗蓝星星。",
+        "icon": "⛵",
+        "scene": [
+          "📄",
+          "⛵",
+          "⭐"
+        ]
+      },
+      {
+        "text": "She wants to sail it across the little pond before dinner.",
+        "hint": "她想在晚饭前让它驶过小池塘。",
+        "icon": "⛵",
+        "scene": [
+          "🌊"
+        ]
+      },
+      {
+        "text": "A gentle wind carries the boat away from her feet.",
+        "hint": "一阵轻风把小船从她脚边吹远。",
+        "icon": "⛵",
+        "scene": [
+          "⛵"
+        ]
+      },
+      {
+        "text": "When a cloud hides the sun, the water looks dark.",
+        "hint": "当云遮住太阳，水面暗了下来。",
+        "icon": "⛵",
+        "scene": [
+          "☁️",
+          "☀️",
+          "💧"
+        ]
+      },
+      {
+        "text": "Dad shines a light on the shore so Mia can see her boat.",
+        "hint": "爸爸在岸边照亮灯光，让米娅看见她的小船。",
+        "icon": "⛵",
+        "scene": [
+          "✨",
+          "⛵"
+        ]
+      },
+      {
+        "text": "Mia brings it home and draws a lighthouse beside her blue star.",
+        "hint": "米娅把它带回家，在蓝星星旁画了一座灯塔。",
+        "icon": "⛵",
+        "scene": [
+          "🏠",
+          "🗼",
+          "⭐"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-02",
+    "level": 3,
+    "title": "A Box for Two",
+    "subtitle": "两只猫的盒子",
+    "icon": "🐈",
+    "pages": [
+      {
+        "text": "Our cat Pip likes sleeping in a box beside the window.",
+        "hint": "我们的猫皮普喜欢睡在窗边的盒子里。",
+        "icon": "🐈",
+        "scene": [
+          "🐈",
+          "🎁",
+          "🪟"
+        ]
+      },
+      {
+        "text": "Today a little cat comes to stay at our house.",
+        "hint": "今天一只小猫来到我们家住。",
+        "icon": "🐈",
+        "scene": [
+          "🐈",
+          "🏠"
+        ]
+      },
+      {
+        "text": "The little cat wants to sit in the warm box too.",
+        "hint": "小猫也想坐进温暖的盒子里。",
+        "icon": "🐈",
+        "scene": [
+          "🐈",
+          "🎁"
+        ]
+      },
+      {
+        "text": "Pip stretches out, and there is no room for a friend.",
+        "hint": "皮普伸展开身子，没有给朋友留下地方。",
+        "icon": "🐈",
+        "scene": [
+          "🐈"
+        ]
+      },
+      {
+        "text": "I bring a bigger box and put their soft blanket inside.",
+        "hint": "我拿来一个更大的盒子，把它们柔软的毯子放进去。",
+        "icon": "🐈",
+        "scene": [
+          "🎁",
+          "🏕️"
+        ]
+      },
+      {
+        "text": "Now two cats sleep by the window with their tails together.",
+        "hint": "现在两只猫尾巴挨着尾巴，睡在窗边。",
+        "icon": "🐈",
+        "scene": [
+          "🪟"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-03",
+    "level": 3,
+    "title": "The Picnic Surprise",
+    "subtitle": "野餐小惊喜",
+    "icon": "🧺",
+    "pages": [
+      {
+        "text": "We pack some fruit and bread for a picnic in the park.",
+        "hint": "我们装好水果和面包，准备去公园野餐。",
+        "icon": "🧺",
+        "scene": [
+          "🍎",
+          "🍞"
+        ]
+      },
+      {
+        "text": "When we open the bag, we cannot find our plates.",
+        "hint": "当我们打开包，却找不到盘子。",
+        "icon": "🧺",
+        "scene": [
+          "🎒"
+        ]
+      },
+      {
+        "text": "My brother looks worried because he wants to share the fruit.",
+        "hint": "弟弟有点担心，因为他想分享水果。",
+        "icon": "🧺",
+        "scene": [
+          "🍎"
+        ]
+      },
+      {
+        "text": "Mum finds a clean lunch box with two little lids.",
+        "hint": "妈妈找到一个有两个小盖子的干净饭盒。",
+        "icon": "🧺",
+        "scene": [
+          "🎁"
+        ]
+      },
+      {
+        "text": "We use the lids as plates and sit under a tree.",
+        "hint": "我们用盖子当盘子，坐在树下。",
+        "icon": "🧺",
+        "scene": [
+          "🌳"
+        ]
+      },
+      {
+        "text": "Our picnic looks different, but the food still tastes good.",
+        "hint": "我们的野餐有些不同，但食物仍然很美味。",
+        "icon": "🧺",
+        "scene": [
+          "🧺"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-04",
+    "level": 3,
+    "title": "After the Rain",
+    "subtitle": "雨停以后",
+    "icon": "🌈",
+    "pages": [
+      {
+        "text": "The rain stops just as we put on our boots.",
+        "hint": "我们刚穿好靴子，雨就停了。",
+        "icon": "🌈",
+        "scene": [
+          "🌧️",
+          "🥾"
+        ]
+      },
+      {
+        "text": "Outside, tiny drops of water shine on every leaf.",
+        "hint": "外面，每片叶子上都有闪亮的小水滴。",
+        "icon": "🌈",
+        "scene": [
+          "💧",
+          "🌿"
+        ]
+      },
+      {
+        "text": "I bend down to see a snail beside the garden path.",
+        "hint": "我弯下腰，看见花园小路旁有一只蜗牛。",
+        "icon": "🌈",
+        "scene": [
+          "🐌"
+        ]
+      },
+      {
+        "text": "It moves slowly with its little house upon its back.",
+        "hint": "它背着自己的小房子，缓缓移动。",
+        "icon": "🌈",
+        "scene": [
+          "🏠"
+        ]
+      },
+      {
+        "text": "We walk around the snail so it can cross the path.",
+        "hint": "我们绕过蜗牛，让它穿过小路。",
+        "icon": "🌈",
+        "scene": [
+          "🐌"
+        ]
+      },
+      {
+        "text": "On our way home, a rainbow appears above the trees.",
+        "hint": "回家的路上，树梢上方出现了一道彩虹。",
+        "icon": "🌈",
+        "scene": [
+          "🏠",
+          "🌈"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-05",
+    "level": 3,
+    "title": "Waiting for a Flower",
+    "subtitle": "等待花开",
+    "icon": "🌻",
+    "pages": [
+      {
+        "text": "I plant a seed and draw a picture of a tall flower.",
+        "hint": "我种下一粒种子，画了一朵高高的花。",
+        "icon": "🌻",
+        "scene": [
+          "🌱",
+          "🌼"
+        ]
+      },
+      {
+        "text": "Every morning, I look in the pot for something new.",
+        "hint": "每天早晨，我都看看花盆里有没有新变化。",
+        "icon": "🌻",
+        "scene": [
+          "🪴"
+        ]
+      },
+      {
+        "text": "At first, I see only soil, and I feel a little sad.",
+        "hint": "起初，我只看见泥土，有一点难过。",
+        "icon": "🌻",
+        "scene": [
+          "🪴"
+        ]
+      },
+      {
+        "text": "Grandpa tells me that growing takes time, even when we cannot see it.",
+        "hint": "爷爷告诉我，生长需要时间，即使我们暂时看不见。",
+        "icon": "🌻",
+        "scene": [
+          "👴"
+        ]
+      },
+      {
+        "text": "One morning, a green shoot pushes up through the soil.",
+        "hint": "一天早晨，一根绿色的嫩芽钻出了泥土。",
+        "icon": "🌻",
+        "scene": [
+          "🌱",
+          "🪴"
+        ]
+      },
+      {
+        "text": "I draw the tiny shoot and leave room for tomorrow.",
+        "hint": "我画下小小的嫩芽，为明天留出空白。",
+        "icon": "🌻",
+        "scene": [
+          "🌱"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-06",
+    "level": 3,
+    "title": "A Seat by the Window",
+    "subtitle": "窗边的座位",
+    "icon": "🚌",
+    "pages": [
+      {
+        "text": "I always like the window seat when we ride the bus.",
+        "hint": "坐巴士时，我总喜欢靠窗的座位。",
+        "icon": "🚌",
+        "scene": [
+          "🪟",
+          "🚌"
+        ]
+      },
+      {
+        "text": "Today my little brother wants to sit there as well.",
+        "hint": "今天弟弟也想坐在那里。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "We both want to watch the shops and trees go by.",
+        "hint": "我们都想看商店和树木从窗外经过。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "Mum asks us to think of a way we can both enjoy the ride.",
+        "hint": "妈妈让我们想一个大家都能享受旅程的办法。",
+        "icon": "🚌",
+        "scene": [
+          "🚌"
+        ]
+      },
+      {
+        "text": "He sits by the window on the way to the park.",
+        "hint": "去公园的路上，他坐在窗边。",
+        "icon": "🚌",
+        "scene": [
+          "🪟"
+        ]
+      },
+      {
+        "text": "On the way home it is my turn, and he tells me what to look for.",
+        "hint": "回家时轮到我，他还告诉我可以寻找什么。",
+        "icon": "🚌",
+        "scene": [
+          "🏠"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-07",
+    "level": 3,
+    "title": "The Blanket House",
+    "subtitle": "毯子小屋",
+    "icon": "🏕️",
+    "pages": [
+      {
+        "text": "It is too windy to play outside, so we build a house indoors.",
+        "hint": "外面的风太大，我们就在屋里搭一座小房子。",
+        "icon": "🏕️",
+        "scene": [
+          "🏠"
+        ]
+      },
+      {
+        "text": "We put a blanket over two chairs and crawl underneath.",
+        "hint": "我们把毯子盖在两把椅子上，爬到下面。",
+        "icon": "🏕️",
+        "scene": [
+          "🏕️"
+        ]
+      },
+      {
+        "text": "My sister brings a pillow, and I bring our favorite books.",
+        "hint": "妹妹带来枕头，我带来我们最喜欢的书。",
+        "icon": "🏕️",
+        "scene": [
+          "☁️"
+        ]
+      },
+      {
+        "text": "Inside our little house, the wind sounds very far away.",
+        "hint": "在我们的小屋里，风声听起来很遥远。",
+        "icon": "🏕️",
+        "scene": [
+          "🏠"
+        ]
+      },
+      {
+        "text": "We invite Dad to join us, but he can only fit his head inside.",
+        "hint": "我们邀请爸爸进来，可他只能把头探进来。",
+        "icon": "🏕️",
+        "scene": [
+          "🏕️"
+        ]
+      },
+      {
+        "text": "We all laugh, and Dad reads a story from the doorway.",
+        "hint": "我们都笑了，爸爸在门口读了一个故事。",
+        "icon": "🏕️",
+        "scene": [
+          "🏕️"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-08",
+    "level": 3,
+    "title": "A Different Ball Game",
+    "subtitle": "不一样的球赛",
+    "icon": "⚽",
+    "pages": [
+      {
+        "text": "Sam brings a new ball to the park to play with his friends.",
+        "hint": "山姆带着新球去公园和朋友们玩。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "His friend May has a sore foot and cannot run today.",
+        "hint": "他的朋友梅脚疼，今天不能跑。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "Sam sits on the grass and rolls the ball gently to her.",
+        "hint": "山姆坐在草地上，轻轻把球滚向她。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "Soon all their friends sit in a circle and roll the ball.",
+        "hint": "很快所有朋友都围坐成圈，滚动着球。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "They say a funny animal name each time the ball comes to them.",
+        "hint": "每次球滚来，他们都会说一个有趣的动物名字。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      },
+      {
+        "text": "May laughs so much that everyone wants to play this game again.",
+        "hint": "梅笑得很开心，大家都想再玩一次这个游戏。",
+        "icon": "⚽",
+        "scene": [
+          "⚽"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-09",
+    "level": 3,
+    "title": "The Missing Moon",
+    "subtitle": "不见的月亮",
+    "icon": "🌙",
+    "pages": [
+      {
+        "text": "Last night the moon shone brightly through my bedroom window.",
+        "hint": "昨晚月亮透过卧室的窗户明亮地照进来。",
+        "icon": "🌙",
+        "scene": [
+          "🌙",
+          "🪟"
+        ]
+      },
+      {
+        "text": "Tonight I look outside, but I cannot find it anywhere.",
+        "hint": "今晚我望向外面，却到处找不到它。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      },
+      {
+        "text": "I ask Mum if the moon has gone away for a holiday.",
+        "hint": "我问妈妈，月亮是不是去度假了。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      },
+      {
+        "text": "She points to a thick cloud drifting slowly across the sky.",
+        "hint": "她指着一片缓缓飘过天空的厚云。",
+        "icon": "🌙",
+        "scene": [
+          "☁️"
+        ]
+      },
+      {
+        "text": "We wait together until a silver edge peeks out from behind it.",
+        "hint": "我们一起等待，直到一条银边从云后露出来。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      },
+      {
+        "text": "The moon was there all along, playing hide and seek with us.",
+        "hint": "原来月亮一直在那里，和我们玩捉迷藏呢。",
+        "icon": "🌙",
+        "scene": [
+          "🌙"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-10",
+    "level": 3,
+    "title": "The Quiet Watchers",
+    "subtitle": "安静的观察者",
+    "icon": "🪺",
+    "pages": [
+      {
+        "text": "We find a bird building a nest in the tree near our gate.",
+        "hint": "我们发现一只鸟在门边的树上筑巢。",
+        "icon": "🪺",
+        "scene": [
+          "🐦",
+          "🪺",
+          "🌳"
+        ]
+      },
+      {
+        "text": "It carries a small twig and places it carefully between the branches.",
+        "hint": "它叼来一根小树枝，小心地放在枝杈间。",
+        "icon": "🪺",
+        "scene": [
+          "🪺"
+        ]
+      },
+      {
+        "text": "My brother wants to stand closer so he can see inside.",
+        "hint": "弟弟想站近一点，好看看里面。",
+        "icon": "🪺",
+        "scene": [
+          "🪺"
+        ]
+      },
+      {
+        "text": "We decide to watch from the window to give the bird some space.",
+        "hint": "我们决定从窗户观察，给小鸟留些空间。",
+        "icon": "🪺",
+        "scene": [
+          "🪟",
+          "🐦"
+        ]
+      },
+      {
+        "text": "Each day we draw what we see in a little notebook.",
+        "hint": "每天我们都把看到的画在小笔记本里。",
+        "icon": "🪺",
+        "scene": [
+          "📒"
+        ]
+      },
+      {
+        "text": "Soon the nest is ready, and our notebook tells the whole story.",
+        "hint": "不久，鸟巢搭好了，笔记本也记录下了整个故事。",
+        "icon": "🪺",
+        "scene": [
+          "🪺",
+          "📒"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-11",
+    "level": 3,
+    "title": "The Helpful Note",
+    "subtitle": "有用的小纸条",
+    "icon": "📝",
+    "pages": [
+      {
+        "text": "On Monday I leave my library book at home by mistake.",
+        "hint": "星期一，我不小心把图书馆的书留在了家里。",
+        "icon": "📝",
+        "scene": [
+          "📖",
+          "🏠"
+        ]
+      },
+      {
+        "text": "I feel upset because I wanted to read it with my friend.",
+        "hint": "我有点难过，因为我想和朋友一起读它。",
+        "icon": "📝",
+        "scene": [
+          "📝"
+        ]
+      },
+      {
+        "text": "That evening I draw a book on a small yellow note.",
+        "hint": "那天晚上，我在黄色小纸条上画了一本书。",
+        "icon": "📝",
+        "scene": [
+          "📖",
+          "📝"
+        ]
+      },
+      {
+        "text": "I put the note on my bag where I can see it.",
+        "hint": "我把纸条放在书包上容易看到的地方。",
+        "icon": "📝",
+        "scene": [
+          "📝",
+          "🎒"
+        ]
+      },
+      {
+        "text": "In the morning, the picture reminds me to pack my book.",
+        "hint": "早晨，这幅画提醒我把书装进书包。",
+        "icon": "📝",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "At school we read together, and my friend makes a note too.",
+        "hint": "在学校，我们一起读书，朋友也做了一张小纸条。",
+        "icon": "📝",
+        "scene": [
+          "🏫",
+          "📝"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-12",
+    "level": 3,
+    "title": "The Long Way Round",
+    "subtitle": "绕一条远路",
+    "icon": "🦆",
+    "pages": [
+      {
+        "text": "A family of ducks walks toward the pond after breakfast.",
+        "hint": "早餐后，一家鸭子朝池塘走去。",
+        "icon": "🦆",
+        "scene": [
+          "👪",
+          "🦆",
+          "🌊"
+        ]
+      },
+      {
+        "text": "A fallen branch lies across their usual path beside the tree.",
+        "hint": "树旁一根掉落的树枝挡住了它们常走的路。",
+        "icon": "🦆",
+        "scene": [
+          "🌳"
+        ]
+      },
+      {
+        "text": "The biggest duck steps over it, but the smallest duck cannot.",
+        "hint": "最大的鸭子跨了过去，可最小的鸭子过不去。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "The big duck comes back and looks for another way.",
+        "hint": "大鸭子走了回来，寻找另一条路。",
+        "icon": "🦆",
+        "scene": [
+          "🦆"
+        ]
+      },
+      {
+        "text": "They walk around the tree together through the soft green grass.",
+        "hint": "它们一起穿过柔软的绿草，绕过了树。",
+        "icon": "🦆",
+        "scene": [
+          "🌳"
+        ]
+      },
+      {
+        "text": "The journey takes a little longer, but everyone reaches the pond.",
+        "hint": "路程稍微长了一点，但大家都到达了池塘。",
+        "icon": "🦆",
+        "scene": [
+          "🌊"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l3-13",
+    "level": 3,
+    "title": "A Story to Share",
+    "subtitle": "可以分享的故事",
+    "icon": "📖",
+    "pages": [
+      {
+        "text": "Grandma tells me a story about a boat she made as a child.",
+        "hint": "奶奶给我讲她小时候做过一条船的故事。",
+        "icon": "📖",
+        "scene": [
+          "👵",
+          "⛵"
+        ]
+      },
+      {
+        "text": "I listen carefully and draw the boat on a sheet of paper.",
+        "hint": "我仔细地听，把那条船画在纸上。",
+        "icon": "📖",
+        "scene": [
+          "⛵",
+          "📄"
+        ]
+      },
+      {
+        "text": "She helps me remember the red sail and the tiny wooden seat.",
+        "hint": "她帮我记起红色的帆和小小的木座位。",
+        "icon": "📖",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "We fold the paper into a book and add our names together.",
+        "hint": "我们把纸折成一本书，一起写上名字。",
+        "icon": "📖",
+        "scene": [
+          "📄",
+          "📖"
+        ]
+      },
+      {
+        "text": "Later I tell the story to Dad using the pictures we made.",
+        "hint": "后来，我用我们画的图把故事讲给爸爸听。",
+        "icon": "📖",
+        "scene": [
+          "📖"
+        ]
+      },
+      {
+        "text": "Now Grandma has a new book, and I have a story to share.",
+        "hint": "现在奶奶有了一本新书，我也有了一个可以分享的故事。",
+        "icon": "📖",
+        "scene": [
+          "👵",
+          "📖"
+        ]
+      }
+    ]
+  }
+]

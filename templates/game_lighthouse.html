@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#eef5f2"><title>小灯塔分级阅读 · Little Lighthouse</title><link rel="stylesheet" href="{{ url_for('static', filename='lighthouse.css') }}"></head>
+<body>
+<main class="shell">
+<header class="topbar"><a href="/" aria-label="返回小游戏">← 小游戏</a><span class="brand">LITTLE LIGHTHOUSE <span aria-hidden="true">✦</span></span><button id="settings-open" aria-label="阅读设置">☷</button></header>
+<p id="notice" class="notice" role="status" hidden></p>
+<section id="home">
+  <div class="heading"><div><p class="eyebrow">每一本书，都是一束光</p><h1>小灯塔分级阅读</h1><p class="muted">听一听，读一读。按自己的节奏启航。</p></div><button id="guide" aria-label="听玩法介绍">🔊 怎么玩</button></div>
+  <section class="harbor" aria-label="我的灯塔航程">
+    <div class="harbor-copy"><span class="label">我的阅读航程</span><h2>今天，去哪座书岛？</h2><p>读完一本，让灯塔再亮一格。</p><div class="voyage-count"><strong id="lit-count">0</strong><span>/ 39 束光</span></div><p id="last-read">小纸船已经准备好啦</p></div>
+    <svg class="harbor-art" viewBox="0 0 400 300" role="img" aria-label="海上的纸船和温暖的灯塔"><defs><linearGradient id="beam"><stop stop-color="#ffe499" stop-opacity=".9"/><stop offset="1" stop-color="#fff6d4" stop-opacity="0"/></linearGradient></defs><circle cx="308" cy="65" r="29" fill="#ffdf91"/><path d="M30 83q13-14 26 0m-1 0q12-14 24 0M117 52q10-10 19 0m0 0q10-10 20 0" fill="none" stroke="#598582" stroke-width="3" stroke-linecap="round"/><path d="M271 105 80 31v155Z" fill="url(#beam)"/><ellipse cx="273" cy="253" rx="88" ry="21" fill="#83aaa0"/><path d="m246 112-19 127h82l-20-127Z" fill="#fff7df" stroke="#416d68" stroke-width="3"/><path d="m241 143-5 29h63l-4-29m-62 58-5 29h79l-5-29" fill="#dd956e"/><path d="M243 90h50v25h-50Z" fill="#ffe4a0" stroke="#416d68" stroke-width="3"/><path d="m234 89 34-32 35 32Z" fill="#416d68"/><path d="M264 95v14m10-14v14" stroke="#bd865b" stroke-width="3"/><path d="M260 239v-23a9 9 0 0 1 18 0v23" fill="#416d68"/><path d="M0 264q60-22 125 0t125 0 150 0v36H0" fill="#a9d0cb"/><path d="m53 228 58 17 57-17-25 35H78Z" fill="#fff9e7" stroke="#5d8982" stroke-width="2"/><path d="m111 245-4-62-54 45m58 17 57-17-61-45" fill="#fffdf4" stroke="#5d8982" stroke-width="2"/><path d="M26 280h35m92-3h28m132 8h39" stroke="#e9f5ef" stroke-width="3" stroke-linecap="round"/></svg>
+    <div id="tower-lights" class="tower-lights" aria-label="39 格灯塔进度"></div>
+  </section>
+  <div id="resume-box" class="resume-box" hidden><div><small>上次的小旅程</small><strong id="resume-title"></strong></div><button id="resume" class="primary">继续读 →</button></div>
+  <nav class="islands" aria-label="选择书岛"><button data-level="1" aria-pressed="true"><span>🌊 蓝海</span><small>L1 · 从短句开始</small></button><button data-level="2" aria-pressed="false"><span>🌿 绿野</span><small>L2 · 发现小故事</small></button><button data-level="3" aria-pressed="false"><span>⛰️ 金山</span><small>L3 · 读更长的句子</small></button></nav>
+  <div class="shelf-head"><h2 id="shelf-title">蓝海书岛</h2><button id="favorites" aria-pressed="false">♡ 我的收藏</button></div>
+  <div id="book-grid" class="book-grid"></div>
+  <section class="week-card"><div class="shelf-head"><h2>本周的小足迹</h2><span id="week-count"></span></div><div id="calendar" class="calendar"></div><p class="muted">读过的日子值得记住，休息的日子也很好。</p><div id="badges" class="badges"></div></section>
+  <button id="parent-open" class="parent-link">家长小窗 · 看见孩子的坚持 ↗</button>
+  <footer>原创试读书库 · 3 级 × 13 本<br>短时阅读，随时停靠。进度只保存在这台设备的当前浏览器。</footer>
+</section>
+<section id="reader" hidden aria-labelledby="book-title">
+  <div class="reader-top"><button id="leave">← 保存并返回</button><button id="favorite" aria-pressed="false">♡ 收藏</button></div>
+  <p id="book-level" class="eyebrow"></p><h1 id="book-title" tabindex="-1"></h1><p id="book-subtitle" class="muted"></p>
+  <div class="page-progress"><span id="page-label"></span><div id="page-dots" aria-hidden="true"></div></div>
+  <article class="page-card"><div id="scene" class="scene" aria-hidden="true"></div><div id="sentence" class="sentence" lang="en" aria-label="点击英文单词听发音"></div><p class="tap-hint">轻点任意单词，听听它的声音</p><div id="word-help" class="word-help" role="status">🔊 先听一遍，再试着自己读。</div><button id="show-hint" class="text-button" aria-expanded="false">看看这页的意思</button><p id="page-hint" class="page-hint" hidden></p></article>
+  <div class="reader-actions"><button id="listen" class="primary">🔊 听这一页</button><button id="invite" aria-pressed="false">♧ 邀请家人入座</button></div>
+  <p id="together-note" class="muted">可以自己读，也可以请家人坐在身边。</p>
+  <nav class="page-nav" aria-label="书页导航"><button id="previous">← 上一页</button><span>慢慢读，不着急</span><button id="next" class="primary">下一页 →</button></nav>
+</section>
+<section id="celebration" class="celebration" hidden aria-labelledby="celebrate-title"><div class="celebrate-art" id="celebrate-art" aria-hidden="true">⛵ ✨</div><p class="eyebrow">又完成了一次小小的航行</p><h1 id="celebrate-title" tabindex="-1">我读完一本英文书啦！</h1><div class="earned-star" aria-label="完成度一星">★</div><p id="celebrate-message"></p><p class="muted">这一颗星，属于坚持读完的你。<br>星星记录完成，不评价发音。</p><div class="celebrate-buttons"><button id="next-book" class="primary">看看下一本 →</button><button id="reread">再读一遍</button><button id="rest">今天先到这里，回到书岛</button></div><small>本版暂未开放录音，2–3 星将在跟读录音功能上线后开放。</small></section>
+</main>
+<dialog id="settings" aria-labelledby="settings-title"><div class="dialog-head"><h2 id="settings-title">让阅读更舒服</h2><button data-close="settings" aria-label="关闭设置">✕</button></div><label>范读速度<select id="rate"><option value="0.65">慢一点</option><option value="0.8">轻轻读 · 默认</option><option value="1">自然速度</option></select></label><label>英文字号<select id="font-size"><option value="1">大字</option><option value="1.2">更大</option><option value="1.4">最大</option></select></label><label class="check-label"><input type="checkbox" id="contrast"> 高对比模式</label><p class="muted">范读使用设备提供的英文语音，音色因设备而异。没有英文语音时仍可看图阅读。</p><p class="muted">本版不录音、不评分。没有每日任务、倒计时或断签惩罚。</p></dialog>
+<dialog id="parent" aria-labelledby="parent-title"><div class="dialog-head"><h2 id="parent-title">家长小窗</h2><button data-close="parent" aria-label="关闭家长小窗">✕</button></div><p class="muted">陪伴和见证，就已经很好。</p><div id="parent-content"></div><p class="muted">39 本自编试读内容，分级尚未经过内容团队校准。图片为场景线索。建议每次阅读约 5–15 分钟，孩子可以随时停下。</p></dialog>
+<noscript><p class="notice">请启用 JavaScript，以使用选书、朗读和本地进度功能。</p></noscript>
+<script id="book-data" type="application/json">{{ books|tojson }}</script><script id="vocab-data" type="application/json">{{ vocabulary|tojson }}</script><script src="{{ url_for('static', filename='lighthouse-core.js') }}"></script><script src="{{ url_for('static', filename='lighthouse.js') }}"></script>
+</body></html>
