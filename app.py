@@ -258,10 +258,6 @@ def create_app(config=None):
         lessons = json.loads((BASE / "reading_lessons.json").read_text(encoding="utf-8"))
         return render_template("game_reading.html", lessons=lessons)
 
-    @app.get("/games/speech")
-    def game_speech():
-        return render_template("game_speech.html")
-
     @app.get("/games/lighthouse")
     def game_lighthouse():
         books = json.loads((BASE / "lighthouse_books.json").read_text(encoding="utf-8"))

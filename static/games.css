@@ -57,6 +57,12 @@
 .speaker{border:0;border-radius:50%;width:38px;height:38px;background:#fff0df;color:#93652d;font-size:18px;line-height:1;padding:0;position:absolute;top:12px;right:12px}
 .speaker:focus-visible{outline:3px solid #f4a47c;outline-offset:2px}
 .answer-row{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.flash-scene [hidden]{display:none}
+.spelling-card{padding:24px 20px;background:#fff;border:1px solid #e9e0d1;border-radius:20px;text-align:center;box-shadow:0 10px 24px rgba(147,101,45,.12)}
+.spelling-card label{display:block;color:#6b6353;font-size:14px}
+.spelling-card input{width:100%;min-width:0;margin-top:12px;padding:12px;border:2px solid #e9e0d1;border-radius:12px;font-size:24px;text-align:center}
+.spelling-card input:focus-visible{outline:3px solid #f4a47c;outline-offset:2px}
+#spelling-feedback{min-height:44px;line-height:1.5;overflow-wrap:anywhere}
 .word-categories{width:100%;min-width:0;overflow-x:auto;padding:3px 2px 7px;scrollbar-width:thin}
 .word-categories .chip{flex:none;min-height:44px;white-space:nowrap}
 .flash-word{max-width:100%;text-align:center;overflow-wrap:anywhere}
