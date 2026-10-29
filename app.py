@@ -13,6 +13,7 @@ from flask import Flask, current_app, jsonify, redirect, render_template, reques
 
 import mathpuzzle
 import wordcards
+import fishquiz
 
 
 BASE = Path(__file__).resolve().parent
@@ -257,6 +258,27 @@ def create_app(config=None):
     def game_reading():
         lessons = json.loads((BASE / "reading_lessons.json").read_text(encoding="utf-8"))
         return render_template("game_reading.html", lessons=lessons)
+
+    @app.get("/games/fish")
+    def game_fish():
+        return render_template("game_fish.html")
+
+    @app.get("/api/games/fish/questions")
+    def fish_questions_api():
+        level = request.args.get("level", "1")
+        attempt = request.args.get("attempt", "0")
+        subject = request.args.get("subject")
+        if level not in ("1", "2", "3", "4", "5", "6") or attempt not in ("0", "1", "2") or (subject and subject not in fishquiz.SUBJECTS):
+            return jsonify(error="无效的关卡或学科"), 400
+        if subject:
+            questions = [fishquiz.build_question(int(level), subject)]
+        else:
+            questions = fishquiz.build_questions(int(level), int(attempt),
+                weak=request.args.get("weak", "").split(","),
+                exclude=request.args.get("exclude", "").split(",")[:30])
+        response = jsonify(questions=questions)
+        response.headers["Cache-Control"] = "no-store"
+        return response
 
     @app.get("/games/lighthouse")
     def game_lighthouse():

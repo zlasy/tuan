@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#dff5ed"><title>吞吞鱼 · 吃鱼长大，答题开门</title><link rel="stylesheet" href="{{ url_for('static', filename='fish.css') }}"></head>
+<body><main class="fish-app">
+  <header><a href="/">‹ 返回打卡</a><span>小小海洋探险家</span><button id="sound" aria-pressed="true" aria-label="提示音开关">声音开</button></header>
+  <div class="title"><div><p class="eyebrow">TINY FISH, BIG ADVENTURE</p><h1>吞吞鱼 <span>🐠</span></h1><p>吃鱼长大，答题开门</p></div><div class="level-badge"><b id="level">1</b><span> / 6 关</span></div></div>
+  <section class="hud" aria-label="成长进度"><div><strong id="area">浅滩珊瑚</strong><span id="score">0 / 30</span></div><progress id="growth" max="30" value="0"></progress><p id="hint" role="status">拖动海面游泳，寻找比你小的鱼。</p></section>
+  <nav id="route" class="sea-route" aria-label="六海域探险进度"></nav>
+  <div class="ocean" id="ocean">
+    <canvas id="sea" width="400" height="500" tabindex="0" aria-label="吞吞鱼海域：拖动游动，也可用方向键或 W A S D 游动"></canvas>
+    <span id="sea-label" class="sea-label">CORAL BAY · 珊瑚湾</span><span id="combo" class="combo"></span>
+    <button id="shell" hidden>🐚 吃饱啦！打开贝壳</button>
+    <section id="cover" class="cover"><div><span class="cover-icon">🐠</span><h2 id="cover-title">第一口，从这里开始</h2><p id="cover-copy">拖动海面，让小鱼跟着你游。吃小鱼，躲开大水母；吃饱后打开贝壳，答题长大！</p><button id="play" class="primary">出发，找小鱼</button><button id="reset" class="secondary" hidden>重新开始</button></div></section>
+    <section id="challenge" class="cover" hidden aria-labelledby="quiz-title"><div class="quiz-card"><div class="quiz-meta"><span id="subject"></span><span id="timer"></span></div><h2 id="quiz-title">贝壳里的小问题</h2><p id="question"></p><div id="options"></div><p id="feedback" role="status"></p><button id="continue" class="primary" hidden>继续</button></div></section>
+  </div>
+  <div class="controls"><button id="depth" aria-pressed="false">🌊 下潜深水</button><button id="pause">Ⅱ 暂停</button></div>
+  <p class="legend"><span>🐟 小鱼 +1 / +2 / +4</span><span>✨ 金鱼 +8</span><span>🪼 大水母要躲开</span></p>
+  <p class="save-note" id="storage-note">进度自动保存在当前浏览器 · 六海域探险</p>
+</main><script src="{{ url_for('static', filename='fish-core.js') }}"></script><script src="{{ url_for('static', filename='fish-art.js') }}"></script><script src="{{ url_for('static', filename='fish.js') }}"></script></body></html>
