@@ -36,7 +36,7 @@
     $('growth').max=state.target;$('growth').value=state.score;
     $('shell').hidden=state.phase!=='ready'||!running||loading;
     $('sound').textContent=state.sound?'声音开':'声音关';$('sound').setAttribute('aria-pressed',String(state.sound));
-    $('hint').textContent=state.phase==='quiz'?'游动已暂停，安心打开知识贝壳。':state.phase==='ready'?`吃饱了，去开贝壳！${Core.questionCount(state.level)} 题答对 ${Core.passCount(state.level)} 题就能长大。`:deep?'深水成长值 +30% · 水母数量翻倍，小心游！':state.failures?'再吃满成长值，就能重新开贝壳。':'拖动海面游泳，寻找比你小的鱼。';
+    $('hint').textContent=state.phase==='quiz'?'游动已暂停，安心打开知识贝壳。':state.phase==='ready'?`吃饱了，去开贝壳！完成 ${Core.questionCount(state.level)} 题可升级，错一次加两题，错三次重玩本关。`:deep?'深水成长值 +30% · 水母数量翻倍，小心游！':state.failures?'再吃满成长值，就能重新开贝壳。':'拖动海面游泳，寻找比你小的鱼。';
   }
   function spawn(gold=false){
     const kind=gold?4:Math.floor(random(0,4)),r=size()*[.35,.48,.65,.84,.45][kind];
@@ -70,14 +70,14 @@
     if(!running||state.phase!=='ready'||loading)return;
     loading=true;running=false;$('shell').hidden=true;
     $('hint').textContent='贝壳里很安全，正在准备小问题…';
-    const params=new URLSearchParams({level:state.level,attempt:state.failures,weak:state.weak.join(','),exclude:state.seen.join(',')});
+    const params=new URLSearchParams({level:state.level,attempt:0,weak:state.weak.join(','),exclude:state.seen.join(',')});
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);
     try{
       const response=await fetch('/api/games/fish/questions?'+params,{signal:controller.signal});
       if(!response.ok)throw Error();
-      const {questions}=await response.json();
+      const {questions,reserve}=await response.json();
       if(!Array.isArray(questions)||questions.length!==Core.questionCount(state.level))throw Error();
-      Core.begin(state,questions);quizTime=20;save();
+      if(!Core.begin(state,questions,reserve))throw Error();quizTime=20;save();
       if(document.hidden)cover('贝壳准备好啦','回来后继续答题。','开始答题');
       else{running=true;renderQuestion();}
     }catch{
@@ -97,9 +97,10 @@
       const b=document.createElement('button');b.textContent=option;b.setAttribute('aria-label','选择 '+option);
       b.addEventListener('click',()=>choose(option));$('options').append(b);
     });
+    $('challenge').classList.remove('quiz-error');
     if(q.result!==null){showFeedback();}
-    else{$('feedback').textContent=state.failures>=2?'这次完成所有题目就能开门，慢慢想。':'选一个答案，打开知识贝壳。';$('continue').hidden=true;}
-    $('timer').textContent=q.result!==null?'已作答':`${Math.ceil(quizTime)} 秒`;
+    else{$('feedback').textContent=`选一个答案，打开知识贝壳。已错 ${Core.errors(q)} / 3 次。`;$('continue').hidden=true;}
+    if(q.result===null)$('timer').textContent=`${Math.ceil(quizTime)} 秒`;
   }
   function choose(value){
     if(!running||state.phase!=='quiz'||state.quiz.result!==null)return;
@@ -107,18 +108,22 @@
   }
   function showFeedback(){
     const q=state.quiz,item=q.questions[q.index];
-    [...$('options').children].forEach(b=>{b.disabled=true;if(b.textContent===item.answer)b.classList.add('correct');});
-    $('feedback').textContent=q.result?'答对啦！'+item.explanation:`一起记住：${item.answer}。${item.explanation}`;
-    $('timer').textContent='已作答';$('continue').hidden=false;$('continue').disabled=false;
-    $('continue').textContent=q.index===q.questions.length-1?'打开贝壳':'下一题';
+    [...$('options').children].forEach(b=>{b.disabled=true;if(b.textContent===item.answer)b.classList.add('correct');else if(b.textContent===q.selected)b.classList.add('wrong');});
+    $('subject').textContent=`${subjectNames[item.subject]} · ${q.index+1} / ${q.questions.length}`;
+    const failed=Core.errors(q)>=3;
+    if(!q.result)$('challenge').classList.add('quiz-error');
+    $('feedback').textContent=q.result?'答对啦！'+item.explanation:`${q.selected===null?'时间到，未作答':'答错了'}！一起记住：${item.answer}。${item.explanation} ${failed?'累计错 3 次，本次升级失败。':`已错 ${Core.errors(q)} / 3 次，已增加 2 道同类型题。`}`;
+    $('timer').textContent=q.selected===null?'已超时':'已作答';$('continue').hidden=false;$('continue').disabled=false;
+    $('continue').textContent=failed?'重新挑战本关':q.index===q.questions.length-1?'打开贝壳':'下一题';
   }
+
   function continueQuiz(){
     if(!running)return;
     const result=Core.advance(state);save();
     if(result==='question'){quizTime=20;renderQuestion();return;}
     if(!result)return;
     $('challenge').hidden=true;
-    if(result==='retry')cover('再练一次，就更熟练','成长值一点没少！再吃 10 点成长值，换一批题。'+(state.failures===2?'下次完成所有题目就能开门。':''));
+    if(result==='retry'){seed();cover('本次升级失败',`累计答错或超时 3 次。重新挑战第 ${state.level} 关，吃鱼积满成长值后再次答题。`,'重新游戏本关');}
     else if(result==='complete'){tone('level');cover('六关完成，海洋探险家！','你从珊瑚浅滩游到了海底火山，也打开了识字、英文和数学贝壳。下次再来探险！','再玩一局');}
     else{tone('level');seed();$('ocean').classList.remove('grow');void $('ocean').offsetWidth;$('ocean').classList.add('grow');cover(`长大啦！来到第 ${state.level} 关`,'身体更大了，能吃的鱼也更多了。准备好继续寻找知识贝壳了吗？','继续探险');}
     hud();

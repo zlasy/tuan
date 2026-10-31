@@ -259,6 +259,11 @@ def create_app(config=None):
         lessons = json.loads((BASE / "reading_lessons.json").read_text(encoding="utf-8"))
         return render_template("game_reading.html", lessons=lessons)
 
+    @app.get("/games/storybook")
+    def game_storybook():
+        pages = json.loads((BASE / "storybook.json").read_text(encoding="utf-8"))
+        return render_template("game_storybook.html", pages=pages)
+
     @app.get("/games/fish")
     def game_fish():
         return render_template("game_fish.html")
@@ -276,7 +281,7 @@ def create_app(config=None):
             questions = fishquiz.build_questions(int(level), int(attempt),
                 weak=request.args.get("weak", "").split(","),
                 exclude=request.args.get("exclude", "").split(",")[:30])
-        response = jsonify(questions=questions)
+        response = jsonify(questions=questions, reserve=fishquiz.build_reserve(int(level), questions))
         response.headers["Cache-Control"] = "no-store"
         return response
 

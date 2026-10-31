@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#faf7ee">
+  <title>云泽和织网的邻居 · 云泽的绘本</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='storybook.css') }}">
+</head>
+<body>
+  <header><a href="{{ url_for('index') }}">‹ 返回首页</a><span>云泽的绘本 · 12 页</span></header>
+  <main aria-label="云泽和织网的邻居">
+    <div class="book" tabindex="0" aria-label="左右滑动翻页，也可以使用每页的翻页按钮">
+      {% for page in pages %}
+      <article class="page" id="page-{{ loop.index }}" aria-label="第 {{ loop.index }} 页，共 {{ pages|length }} 页">
+        <img src="{{ url_for('static', filename='storybook/%02d-768.webp'|format(loop.index), v='hair2') }}"
+          srcset="{{ url_for('static', filename='storybook/%02d-768.webp'|format(loop.index), v='hair2') }} 768w, {{ url_for('static', filename='storybook/%02d-1200.webp'|format(loop.index), v='hair2') }} 1200w"
+          sizes="(max-width: 640px) 100vw, 640px" width="1200" height="1200"
+          alt="{{ page.title }}的水彩插图" loading="{{ 'eager' if loop.first else 'lazy' }}" decoding="async" {% if loop.first %}fetchpriority="high"{% endif %}>
+        <div class="copy">
+          <h1>{{ page.title }}</h1>
+          {% for line in page.text.split('\n') %}<p>{{ line }}</p>{% endfor %}
+          <nav aria-label="第 {{ loop.index }} 页翻页">
+            {% if not loop.first %}<a href="#page-{{ loop.index - 1 }}">← 上一页</a>{% else %}<span></span>{% endif %}
+            <span>{{ loop.index }} / {{ pages|length }}</span>
+            {% if not loop.last %}<a href="#page-{{ loop.index + 1 }}">下一页 →</a>{% else %}<a href="#page-1">再读一遍 ↺</a>{% endif %}
+          </nav>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="hint">左右滑动，和云泽一起发现小小的世界</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#30483f;background:#faf7ee}
+*{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}
+header{max-width:640px;margin:auto;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
+header a{display:inline-flex;align-items:center;min-height:44px}header span{color:#737e71}
+main{max-width:640px;margin:auto}.book{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;align-items:stretch;scrollbar-width:thin}
+.page{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;background:#fffdf7}
+.page img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#eee9dc}
+.copy{padding:22px 22px max(20px,env(safe-area-inset-bottom))}h1{font-size:clamp(22px,5.5vw,30px);line-height:1.4;margin:0 0 16px}
+p{font-size:clamp(17px,4.3vw,21px);line-height:1.85;margin:0 0 8px;overflow-wrap:break-word}
+nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-top:24px;font-size:14px}
+nav a{display:flex;justify-content:center;align-items:center;min-height:48px;padding:8px;background:#e9efdf;border-radius:14px}nav>span{text-align:center;color:#74806b}
+.hint{text-align:center;font-size:13px;color:#75806e;padding:16px;margin:0}
+a:focus-visible,.book:focus-visible{outline:3px solid #9b613c;outline-offset:-3px}

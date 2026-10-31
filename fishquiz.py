@@ -62,3 +62,20 @@ def build_questions(level, attempt=0, weak=(), exclude=(), rng=None):
         seen.add(question['id'])
     rng.shuffle(questions)
     return questions
+
+
+def build_reserve(level, questions, rng=None):
+    """Preload extra questions so feedback never waits for a network request."""
+    rng = rng or random
+    seen = {q['id'] for q in questions}
+    reserve = {}
+    for subject in SUBJECTS:
+        reserve[subject] = []
+        for _ in range(6):
+            for _ in range(100):
+                question = build_question(level, subject, rng)
+                if question['id'] not in seen:
+                    break
+            reserve[subject].append(question)
+            seen.add(question['id'])
+    return reserve
